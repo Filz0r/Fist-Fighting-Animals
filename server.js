@@ -21,6 +21,7 @@ mongoose.connection.once('open', async () => {
 app.use(expressLayouts);
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
+app.use(express.static(__dirname + '/public'));
 
 // passport 
 app.use(flash())
@@ -43,6 +44,7 @@ app.use(function (req, res, next) {
 app.use('/', require('./routes/index'))
 app.use('/login', loginRouter)
 app.use('/register', registerRouter)
+app.use('/admin', require('./routes/admin'))
 
 // logout
 app.get('/logout', (req, res) => {
