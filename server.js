@@ -6,6 +6,7 @@ const loginRouter = require('./routes/login')
 const passport = require('passport')
 const flash = require('connect-flash')
 const session = require('express-session')
+const expressLayouts = require('express-ejs-layouts')
 require('./controllers/passport')(passport)
 
 const app = express()
@@ -17,8 +18,8 @@ mongoose.connection.once('open', async () => {
     console.log(`there was an error: ${err}`)
 });
 
-// app.use(expressLayouts);
-app.set('view-engine', 'ejs')
+app.use(expressLayouts);
+app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 
 // passport 
