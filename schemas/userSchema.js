@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
     username: reqString,
     email: reqString,
     password: reqString,
+    joinDate: {
+        type: Date,
+        default: Date.now,
+    },
     admin: {
         type: Boolean,
         required: true,

@@ -45,6 +45,11 @@ app.use('/', require('./routes/index'))
 app.use('/login', loginRouter)
 app.use('/register', registerRouter)
 app.use('/admin', require('./routes/admin'))
+app.use('/account', require('./routes/account'))
+app.use('/fight', require('./routes/fight'))
+app.use('/user', require('./routes/user'))
+app.use('/delete', require('./routes/delete'))
+app.use('/edit', require('./routes/edit'))
 
 // logout
 app.get('/logout', (req, res) => {

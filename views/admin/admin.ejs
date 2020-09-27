@@ -1,5 +1,24 @@
-<% for(let i = users.length - 1; i >= 0; i--) { %>
 <div class="row">
-    <%= users[i].name %>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">email</th>
+                <th scope="col">joined at</th>
+                <th scope="col">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = users.length - 1; i >= 0; i--) { %>
+            <tr>
+                <th scope="row"><%= users[i].id %></th>
+                <td><%= users[i].name %></td>
+                <td><%= users[i].email %></td>
+                <td><%= users[i].joinDate %></td>
+                <td><a href="admin/edit/<%=users[i].id%>"><img class="mr-1" src="../images/edit.png" alt="edit" /></a> <a href="/delete"><img class="mr-1" src="../images/delete.png" alt="delete" /></a></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
 </div>
-<% } %>
