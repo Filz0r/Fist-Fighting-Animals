@@ -37,6 +37,7 @@ app.use(passport.session())
 app.use(function (req, res, next) {
     res.locals.messages = req.flash('message')
     res.locals.error = req.flash('error')
+    res.locals.changes = req.flash('changes')
     next()
 })
 

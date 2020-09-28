@@ -16,7 +16,7 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
     }
     try {
         const hashedPw = await bcrypt.hash(password, 10)
-        const id = await User.countDocuments() + 1
+        const id = await User.countDocuments()
         User.findOne({ email: email }).then((user) => {
             if (user) {
                 req.flash('message', 'That email already exists!')
@@ -27,7 +27,11 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
                     username: username,
                     email: email,
                     password: hashedPw,
-                    admin: false
+                    admin: false,
+                    level: 1,
+                    attack: 1,
+                    deffense: 1,
+                    HP: 10
                 }).save().then(user => {
                     req.flash('message', 'You are now registered!')
                     res.redirect('/login')

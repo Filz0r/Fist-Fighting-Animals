@@ -1,3 +1,11 @@
+<%if(changes.length != 0) {%>
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <%= changes %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+<% } %>
 <div class="row">
     <table class="table">
         <thead>
@@ -10,13 +18,13 @@
             </tr>
         </thead>
         <tbody>
-            <% for(let i = users.length - 1; i >= 0; i--) { %>
+            <% for(let i = 0; i < users.length; i++) { %>
             <tr>
                 <th scope="row"><%= users[i].id %></th>
                 <td><%= users[i].name %></td>
                 <td><%= users[i].email %></td>
                 <td><%= users[i].joinDate %></td>
-                <td><a href="admin/edit/<%=users[i].id%>"><img class="mr-1" src="../images/edit.png" alt="edit" /></a> <a href="/delete"><img class="mr-1" src="../images/delete.png" alt="delete" /></a></td>
+                <td><a href="admin/edit/<%=users[i].id%>"><img class="mr-1" src="../images/edit.png" alt="edit" /></a></td>
             </tr>
             <% } %>
         </tbody>

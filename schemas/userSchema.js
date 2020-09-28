@@ -3,13 +3,14 @@ const mongoose = require('mongoose')
 
 const reqString = {
     type: String,
-    required: false
+    required: true
+}
+const reqNumber = {
+    type: Number,
+    required: true
 }
 const userSchema = new mongoose.Schema({
-    _id: {
-        type: Number,
-        required : true
-    },
+    _id: reqNumber,
     username: reqString,
     email: reqString,
     password: reqString,
@@ -20,7 +21,12 @@ const userSchema = new mongoose.Schema({
     admin: {
         type: Boolean,
         required: true,
-    }
+    },
+    level: reqNumber,
+    attack: reqNumber,
+    deffense: reqNumber,
+    HP: reqNumber
+
 })
 
 module.exports = mongoose.model('users', userSchema)
