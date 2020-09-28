@@ -34,10 +34,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 //global error variables
-app.use(function (req, res, next) {
+app.use( (req, res, next) => {
     res.locals.messages = req.flash('message')
     res.locals.error = req.flash('error')
     res.locals.changes = req.flash('changes')
+    res.locals.paths = req.flash('path')
     next()
 })
 
@@ -46,11 +47,11 @@ app.use('/', require('./routes/index'))
 app.use('/login', loginRouter)
 app.use('/register', registerRouter)
 app.use('/admin', require('./routes/admin'))
-app.use('/account', require('./routes/account'))
-app.use('/fight', require('./routes/fight'))
-app.use('/user', require('./routes/user'))
-app.use('/delete', require('./routes/delete'))
-app.use('/edit', require('./routes/edit'))
+app.use('/account', require('./routes/users/account'))
+app.use('/fight', require('./routes/users/fight'))
+app.use('/user', require('./routes/users/user'))
+app.use('/delete', require('./routes/users/delete'))
+app.use('/edit', require('./routes/users/edit'))
 
 // logout
 app.get('/logout', (req, res) => {
