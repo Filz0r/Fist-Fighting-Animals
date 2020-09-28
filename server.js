@@ -11,7 +11,7 @@ require('./controllers/passport')(passport)
 
 const app = express()
 //checks for connection
-mongoose.connect(process.env.DATABASE_PATH, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(process.env.DATABASE_PATH, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
 mongoose.connection.once('open', async () => {
     console.log('mongoDB connected successfully!')
 }).on('error', (err) => {

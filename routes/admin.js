@@ -41,8 +41,7 @@ router.post('/delete/:id', checkAuthenticated, async (req, res) => {
 
 router.post('/save/:id', checkAuthenticated, async (req, res) => {
     if (req.user.admin) {
-        const { newPw, checkNewPw } = req.body
-        console.log(req.body)        
+        const { newPw, checkNewPw } = req.body       
         if (await bcrypt.compare(newPw, req.user.password)) {
             req.flash('changes', 'password is the same as old one')
             res.redirect(`/admin/edit/${req.params.id}`)
