@@ -1,62 +1,72 @@
 <%if(changes.length != 0) {%>
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-        <%= changes %>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+    <%= changes %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 <% } %>
 
-    <nav class="nav nav-tabs nav-fill" role="tablist">
-        <a class="nav-link active nav-success" href="#userTable" role="tab" data-toggle="tab">User</a>
-        <a class="nav-link" id="animalChanger" href="#animalTable" role="tab"data-toggle="tab">Animals</a>
-    </nav>
-    <div class="tab-content flex-center">
-   
-            <table class="table tab-pane fade show active" id="userTable" role="tabpanel">
-                <thead>
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">name</th>
-                        <th scope="col">email</th>
-                        <th scope="col">joined at</th>
-                        <th scope="col">actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(let i = 0; i < users.length; i++) { %>
-                    <tr>
-                        <th scope="row"><%= users[i].id %></th>
-                        <td><%= users[i].name %></td>
-                        <td><%= users[i].email %></td>
-                        <td><%= users[i].joinDate %></td>
-                        <td><a href="admin/edit/<%=users[i].id%>"><img class="mr-1" src="../images/edit.png" alt="edit" /></a></td>
-                    </tr>
-                    <% } %>
-                </tbody>
-            </table>
-
-            <table class="table tab-pane fade show" id="animalTable" role="tabpanel">
-                <thead class="w-100">
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">name</th>
-                        <th scope="col">email</th>
-                        <th scope="col">level</th>
-                        <th scope="col">actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(let i = 0; i < users.length; i++) { %>
-                    <tr>
-                        <th scope="row"><%= users[i].id %></th>
-                        <td><%= users[i].name %></td>
-                        <td><%= users[i].email %></td>
-                        <td><%= users[i].joinDate %></td>
-                        <td><a href="admin/edit/<%=users[i].id%>"><img class="mr-1" src="../images/edit.png" alt="edit" /></a></td>
-                    </tr>
-                    <% } %>
-                </tbody>
-            </table>
-  
+<nav class="nav nav-tabs nav-fill" role="tablist">
+    <a class="nav-link active" href="#userTable" role="tab" data-toggle="tab" aria-selected="true">User</a>
+    <a class="nav-link" id="animalChanger" href="#animalTable" role="tab" data-toggle="tab">Animals</a>
+</nav>
+<div class="tab-content">
+    <div class="table-responsive tab-pane fade show active" id="userTable" role="tabpanel">
+        <table class="table " >
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">email</th>
+                    <th scope="col">joined at</th>
+                    <th scope="col">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < users.length; i++) { %>
+                <tr>
+                    <th scope="row"><%= users[i].id %></th>
+                    <td><%= users[i].name %></td>
+                    <td><%= users[i].email %></td>
+                    <td><%= users[i].joinDate %></td>
+                    <td><a href="admin/edit/<%=users[i].id%>"><img class="mr-1" src="../images/edit.png"
+                                alt="edit" /></a></td>
+                </tr>
+                <% } %>
+            </tbody>
+            
+        </table>       
     </div>
+    <div class="table-responsive tab-pane fade show" id="animalTable" role="tabpanel">
+        <table class="table">
+            <thead class="w-100">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < animals.length; i++) { %>
+                <tr>
+                    <th scope="row"><%= animals[i].id %></th>
+                    <td><%= animals[i].name %></td>
+                    <td><%= animals[i].level %></td>
+                    <td><%= animals[i].category %></td>
+                    <td><a href="admin/editAnimal/<%=animals[i].id%>"><img class="mr-1" src="../images/edit.png"
+                                alt="edit" /></a></td>
+                </tr>
+                <% } %>
+            </tbody>
+            
+        </table>
+        <form action="/admin/addAnimal" method="GET">
+            <button class="btn btn-outline-success btn-block">Add Animal</button>
+        </form>        
+    </div>
+
+
+</div>

@@ -1,72 +1,129 @@
+<% if(locals.users) { %>
 <div class="card border-success mb-3">
     <div class="card-header">
         <h3 class="text-success">Edit: <%= users.username %></h3>
     </div>
-    <form action="/admin/save/<%=users.id%>" method="POST">
-    <div class="card-body">
-        <%if(changes.length != 0) {%>
+    <form action="/admin/save/<%=locals.users.id%>" method="POST">
+        <div class="card-body">
+            <%if(changes.length != 0) {%>
             <div class="alert alert-info alert-dismissible fade show" role="alert">
                 <%= changes %>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
-              </div>
-        <% } %>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<%= users.email %>">
             </div>
-            <div class="form-group col-md-4">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" value="<%= users.username %>">
+            <% } %>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<%= locals.users.email %>">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username"
+                        value="<%= locals.users.username %>">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="userLevel">Level</label>
+                    <input type="number" class="form-control" id="userLevel" name="userLevel"
+                        value="<%= locals.users.level %>">
+                </div>
             </div>
-            <div class="form-group col-md-2">
-                <label for="userLevel">Level</label>
-                <input type="number" class="form-control" id="userLevel" name="userLevel"
-                    value="<%= users.level %>">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="oldPw">Old Password</label>
+                    <input type="password" class="form-control" id="oldPw" name="oldPw">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="newPw">New Password</label>
+                    <input type="password" class="form-control" id="newPw" name="newPw">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="checkNewPw">Confirm New Password</label>
+                    <input type="password" class="form-control" id="checkNewPw" name="checkNewPw">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="userAttack">Attack</label>
+                    <input type="number" class="form-control" id="userAttack" name="userAttack"
+                        value="<%= locals.users.attack %>">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="userDefense">Defense</label>
+                    <input type="number" class="form-control" id="userDefense" name="userDefense"
+                        value="<%= locals.users.deffense %>">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="userHP">HP</label>
+                    <input type="number" class="form-control" id="userHP" name="userHP" value="<%= locals.users.HP %>">
+                </div>
             </div>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="oldPw">Old Password</label>
-                <input type="password" class="form-control" id="oldPw" name="oldPw">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="newPw">New Password</label>
-                <input type="password" class="form-control" id="newPw" name="newPw">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="checkNewPw">Confirm New Password</label>
-                <input type="password" class="form-control" id="checkNewPw" name="checkNewPw">
-            </div>
+        <div class="card-footer pb-1 mb-0">
+            <button type="submit" class="btn btn-outline-success btn-block mb-2">Save Changes</button>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="userAttack">Attack</label>
-                <input type="number" class="form-control" id="userAttack" name="userAttack"
-                    value="<%= users.attack %>">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="userDefense">Defense</label>
-                <input type="number" class="form-control" id="userDefense" name="userDefense"
-                    value="<%= users.deffense %>">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="userHP">HP</label>
-                <input type="number" class="form-control" id="userHP" name="userHP"
-                    value="<%= users.HP %>">
-            </div>
-        </div>
-    </div>
-    <div class="card-footer">
-        <button type="submit" class="btn btn-outline-success btn-block mb-2">Save Changes</button>
-        </form>
-        <form action="/admin/delete/<%= users.id %>" method="POST">
+    </form>
+    <div class="card-footer pt-0" style="border-top: 0px">
+        <form action="/admin/delete/<%= locals.users.id %>" method="POST">
             <button type="submit" class="btn btn-outline-danger btn-block">Delete User</button>
         </form>
-
     </div>
-
-
 </div>
+<% } %>
+
+<% if(locals.animals) { %>
+<div class="card border-success mb-3">
+    <div class="card-header">
+        <h3 class="text-success">Edit: <%= locals.animals.name %></h3>
+    </div>
+    <form action="/admin/saveAnimal/<%=locals.animals.id%>" method="POST">
+        <div class="card-body">
+            <%if(changes.length != 0) {%>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <%= changes %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% } %>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<%= animals.name %> ">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="category">Category</label>
+                    <input type="text" class="form-control" id="category" name="category" value="<%= animals.category %>">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="animalLevel">Level</label>
+                    <input type="number" class="form-control" id="animalLevel" name="animalLevel" value="<%= animals.level %>">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="animalAttack">Attack</label>
+                    <input type="number" class="form-control" id="animalAttack" name="animalAttack" value="<%= animals.attack %>">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="animalDefense">Defense</label>
+                    <input type="number" class="form-control" id="animalDefense" name="animalDefense" value="<%= animals.defense %>">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="animalHP">HP</label>
+                    <input type="number" class="form-control" id="animalHP" name="animalHP" value="10">
+                </div>
+            </div>
+        </div>
+        <div class="card-footer pb-1 mb-0">
+            <button type="submit" class="btn btn-outline-success btn-block mb-2">Save Changes</button>
+        </div>
+    </form>
+    <div class="card-footer pt-0" style="border-top: 0px">
+        <form action="/admin/deleteAnimal/<%= locals.animals.id %>" method="POST">
+            <button type="submit" class="btn btn-outline-danger btn-block">Delete Animal</button>
+        </form>
+    </div>
+</div>
+<% } %>

@@ -10,13 +10,6 @@ const expressLayouts = require('express-ejs-layouts')
 require('./controllers/passport')(passport)
 
 const app = express()
-//checks for connection
-mongoose.connect(process.env.DATABASE_PATH, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
-mongoose.connection.once('open', async () => {
-    console.log('mongoDB connected successfully!')
-}).on('error', (err) => {
-    console.log(`there was an error: ${err}`)
-});
 
 app.use(expressLayouts);
 app.set('view engine', 'ejs')
@@ -67,5 +60,14 @@ app.listen(3000, (err) => {
         console.log('connected!')
     }
 })
+
+//checks for connection
+mongoose.connect(process.env.DATABASE_PATH, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
+mongoose.connection.once('open', async (err) => {
+    console.log('mongoDB connected successfully!')
+    if (err) return console.log(err)
+}).on('error', (err) => {
+    console.log(`there was an error: ${err}`)
+});
 
 

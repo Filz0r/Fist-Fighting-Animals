@@ -24,15 +24,17 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
             } else {
                 new User({
                     _id: id,
-                    username: username,
-                    email: email,
+                    username,
+                    email,
                     password: hashedPw,
                     admin: false,
                     level: 1,
                     attack: 1,
                     deffense: 1,
-                    HP: 10
-                }).save().then(user => {
+                    HP: 10,
+                    storyLvl: 1,
+                    pointsToAdd: 0
+                }).save().then( () => {
                     req.flash('message', 'You are now registered!')
                     res.redirect('/login')
                 })
@@ -40,9 +42,7 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
         })
     } catch (e) {
         console.log(e)
-        res.redirect('/')
     }
-
 })
 
 module.exports = router

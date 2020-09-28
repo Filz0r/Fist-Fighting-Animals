@@ -25,7 +25,9 @@ const userSchema = new mongoose.Schema({
     level: reqNumber,
     attack: reqNumber,
     deffense: reqNumber,
-    HP: reqNumber
+    HP: reqNumber,
+    storyLvl: reqNumber,
+    pointsToAdd: reqNumber,
 
 })
 
