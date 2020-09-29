@@ -8,13 +8,14 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const expressLayouts = require('express-ejs-layouts')
 require('./controllers/passport')(passport)
-
+const upload = require('express-fileupload')
 const app = express()
 
 app.use(expressLayouts);
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'))
+app.use(upload())
 
 // passport 
 app.use(flash())

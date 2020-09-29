@@ -4,13 +4,16 @@ const router = express.Router()
 const { checkAuthenticated } = require('../controllers/AuthController')
 const User = require('../schemas/userSchema')
 const Animal = require('../schemas/animalSchema')
+const fs = require('fs')
+const path = require('path')
+const root = process.env.INIT_CWD
 
 router.get('/', checkAuthenticated, async (req, res) => {
     if (req.user.admin) {
         const userData = []
         const animalData = []
         const animals = await Animal.find()
-        animals.forEach(animal => animalData.push({ id: animal.id, name: animal.name, level: animal.level, category: animal.category }))
+        animals.forEach(animal => animalData.push({ id: animal.id, name: animal.name, level: animal.level, category: animal.category, path: animal.img_path }))
         const users = await User.find()
         users.forEach(user => { userData.push({ id: user.id, name: user.username, email: user.email, joinDate: user.joinDate.toLocaleString() }) })
         const path = res.req.originalUrl
@@ -97,17 +100,29 @@ router.post('/addAnimal', checkAuthenticated, async (req, res) => {
     if (req.user.admin) {
         const { name, category, animalLevel: level, animalDefense: defense, animalAttack: attack, animalHP: HP } = req.body
         const id = await Animal.countDocuments()
-        await new Animal({
-            _id: id,
-            name,
-            category,
-            level,
-            attack,
-            defense,
-            HP
-        }).save()
-        req.flash('changes', 'Added a new Animal!')
-        res.redirect('/admin')
+        const file = req.files.animalPictures
+        const fileExtension = file.mimetype.slice(6, file.mimetype.length)
+        file.name = `${id}.${fileExtension}`
+        const uploadPath = `public/images/animals/${file.name}`
+        file.mv( uploadPath, err => {
+            if(err) {
+                return console.log(err)
+            } else {
+                const n = new Animal({
+                    _id: id,
+                    name,
+                    category,
+                    level,
+                    attack,
+                    defense,
+                    HP,
+                    img_path: `/images/animals/${id}.${fileExtension}`
+                })
+                n.save()
+                req.flash('changes', `Added ${ name } to the animal list!`)
+                res.redirect('/admin')
+            }
+        })        
     } else {
         req.flash('message', 'You don\'t have access to this page!')
         res.redirect('/')
@@ -134,7 +149,8 @@ router.post('/saveAnimal/:id', checkAuthenticated, async (req, res) => {
             level,
             attack,
             defense,
-            HP
+            HP,
+
         })
         req.flash('changes', `Animal ${ name } was updated`)
         res.redirect('/admin')

@@ -1,4 +1,4 @@
-<form action="/admin/addAnimal" method="POST">
+<form action="/admin/addAnimal" method="POST" enctype="multipart/form-data">
     <div class="card border-success mb-3">
         <div class="card-header">
             <h3 class="text-success">Add Animal</h3>
@@ -38,6 +38,12 @@
                 <div class="form-group col-md-4">
                     <label for="animalHP">HP</label>
                     <input type="number" class="form-control" id="animalHP" name="animalHP" value="10">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-file col-md-6">
+                    <label class="custom-file-label" for="animalPictures" style="color:black">Select a picture</label>
+                    <input type="file" name="animalPictures" class="custom-file-input" id="animalPictures" required>
                 </div>
             </div>
         </div>

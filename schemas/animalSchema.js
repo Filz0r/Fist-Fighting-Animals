@@ -16,8 +16,11 @@ const animalSchema = new mongoose.Schema({
     level: reqNumber,
     attack: reqNumber,
     defense: reqNumber,
-    HP: reqNumber
-
+    HP: reqNumber,
+    img_path: reqString,
+    storyLvl: reqNumber,
+    pointsToAdd: reqNumber,
+    coinsDrop: reqNumber,
 })
 
 module.exports = mongoose.model('animals', animalSchema)
