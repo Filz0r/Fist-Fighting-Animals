@@ -73,7 +73,7 @@
 <% } %>
 
 <% if(locals.animals) { %>
-<div class="d-flex card border-success mb-3 justify-content-center">
+<div class="card border-success mb-3">
     <div class="card-header">
         <h3 class="text-success">Edit: <%= locals.animals.name %></h3>
     </div>
@@ -113,6 +113,24 @@
                     <div class="form-group col-md-4">
                         <label for="animalHP">HP</label>
                         <input type="number" class="form-control" id="animalHP" name="animalHP" value="10">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="storyLvl">Story Level</label>
+                        <input type="number" class="form-control" id="storyLvl" name="storyLvl" value="1">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="pointsToAdd">Points To Add</label>
+                        <input type="number" class="form-control" id="pointsToAdd" name="pointsToAdd" value="1">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="coinsDrop">Coins to Drop</label>
+                        <input type="number" class="form-control" id="coinsDrop" name="coinsDrop" value="10">
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="animalPictures" style="color:black">Select a picture</label>
+                            <input type="file" name="animalPictures" class="custom-file-input" id="animalPictures" required>
+                        </div>
                     </div>
                 </div>
             </div>
