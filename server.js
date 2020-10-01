@@ -22,7 +22,8 @@ app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie:{_expires : 7200000}
 }))
 app.use(passport.initialize())
 app.use(passport.session())
