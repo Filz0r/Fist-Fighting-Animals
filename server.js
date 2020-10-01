@@ -22,7 +22,7 @@ app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: true
 }))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -54,11 +54,12 @@ app.get('/logout', (req, res) => {
     res.redirect('/login')
 })
 // starts server
-app.listen(3000, (err) => {
+const port = 2500
+app.listen(port, (err) => {
     if (err) {
         console.log(err)
     } else {
-        console.log('connected!')
+        console.log(`connected on port: ${ port }`)
     }
 })
 

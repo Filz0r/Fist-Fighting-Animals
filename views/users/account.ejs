@@ -1,4 +1,4 @@
-<% if(locals.user) { %>
+<% if(user) { %>
     <div class="card border-success mb-3">
         <div class="card-header">
             <h3 class="text-success">Edit: <%= user.username %></h3>
@@ -13,23 +13,25 @@
                     </button>
                 </div>
                 <% } %>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<%= locals.user.email %>">
+                
+
+                
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                value="<%= user.username %>">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="userLevel">Level</label>
+                            <input type="text" class="form-control" id="userLevel" name="userLevel" value="<%= user.level %>">
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username"
-                            value="<%= locals.user.username %>">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
                     </div>
-                    <div class="form-group col-md-2">
-                        <label for="userLevel">Level</label>
-                        <input type="number" class="form-control" id="userLevel" name="userLevel"
-                            value="<%= locals.user.level %>">
-                    </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="oldPw">Old Password</label>
                         <input type="password" class="form-control" id="oldPw" name="oldPw">
@@ -43,6 +45,7 @@
                         <input type="password" class="form-control" id="checkNewPw" name="checkNewPw">
                     </div>
                 </div>
+                
             </div>
             <div class="card-footer pb-1 mb-0">
                 <button type="submit" class="btn btn-outline-success btn-block mb-2">Save Changes</button>
