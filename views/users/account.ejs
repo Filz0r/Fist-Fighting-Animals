@@ -3,8 +3,7 @@
         <div class="card-header">
             <h3 class="text-success">Edit: <%= user.username %></h3>
         </div>
-        <form action="/admin/save/<%=locals.user.id%>" method="POST">
-            <div class="card-body">
+                    <div class="card-body">
                 <%if(changes.length != 0) {%>
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                     <%= changes %>
@@ -15,46 +14,51 @@
                 <% } %>
                 
 
-                
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username"
-                                value="<%= user.username %>">
+                <form action="/admin/save/<%=locals.user.id%>" method="POST"></form>
+                    <div class="row">
+                        <img src="/images/users/avatar.png" class="img-fluid col">
+                        <div class="form-group col">
+                            <div class="form-row col">
+                                <div class="form-group col-md-10">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        value="<%= user.username %>">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="userLevel">Level</label>
+                                    <input type="text" class="form-control" id="userLevel" name="userLevel" value="<%= user.level %>" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
+                            </div>
+                            <div class="form-group col">
+                                <label for="oldPw">Old Password</label>
+                                <input type="password" class="form-control" id="oldPw" name="oldPw">
+                            </div>
+                            <div class="form-group col">
+                                <label for="newPw">New Password</label>
+                                <input type="password" class="form-control" id="newPw" name="newPw">
+                            </div>
+                            <div class="form-group col">
+                                <label for="checkNewPw">Confirm New Password</label>
+                                <input type="password" class="form-control" id="checkNewPw" name="checkNewPw">
+                            </div>
                         </div>
-                        <div class="form-group col-md-2">
-                            <label for="userLevel">Level</label>
-                            <input type="text" class="form-control" id="userLevel" name="userLevel" value="<%= user.level %>">
-                        </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
+                    <div class="card-footer pb-1 mb-0">
+                        <button type="submit" class="btn btn-outline-success btn-block mb-2">Save Changes</button>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="oldPw">Old Password</label>
-                        <input type="password" class="form-control" id="oldPw" name="oldPw">
+                    <div class="card-footer pt-0" style="border-top: 0px">
+                        <form action="/admin/delete/<%= locals.user.id %>" method="POST">
+                            <button type="submit" class="btn btn-outline-danger btn-block">Delete User</button>
+                        </form>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="newPw">New Password</label>
-                        <input type="password" class="form-control" id="newPw" name="newPw">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="checkNewPw">Confirm New Password</label>
-                        <input type="password" class="form-control" id="checkNewPw" name="checkNewPw">
-                    </div>
-                </div>
-                
+                </form>
+
             </div>
-            <div class="card-footer pb-1 mb-0">
-                <button type="submit" class="btn btn-outline-success btn-block mb-2">Save Changes</button>
-            </div>
-        </form>
-        <div class="card-footer pt-0" style="border-top: 0px">
-            <form action="/admin/delete/<%= locals.user.id %>" method="POST">
-                <button type="submit" class="btn btn-outline-danger btn-block">Delete User</button>
-            </form>
-        </div>
+
+
     </div>
     <% } %>
