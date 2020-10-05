@@ -1,26 +1,36 @@
-#updateStats {
-    &:hover {
-        cursor: pointer;
+#updateCard {
+    .card-header {
+        background-color: $bgColor;
+        border: none;
     }
-    .fas {
-        cursor: pointer;
-        color: $mainColor;
+    #updateStats {
         &:hover {
-            color: rgb(255, 255, 255);
+            cursor: pointer;
+        }
+        .fas {
+            cursor: pointer;
+            color: $mainColor;
+            &:hover {
+                color: rgb(255, 255, 255);
+            }
+        }
+        input[type="text"] {
+            color: white;
+            background-color:$bgColor;
         }
     }
-    input[type="text"] {
-        color: white;
-        background-color:$bgColor;
+    
+    #err0 {
+        border-radius: 0px;
+        display: none;
+    }
+    #err1 {
+        border-radius: 0px;
+        display: none;
+    }
+    #err2 {
+        border-radius: 0px;
+        display: none;
     }
 }
 
-#err0 {
-    display: none;
-}
-#err1 {
-    display: none;
-}
-#err2 {
-    display: none;
-}

@@ -7,30 +7,34 @@ body {
     padding-top: 40px;
   }
 }
-#updateStats:hover {
+#updateCard .card-header {
+  background-color: #282828;
+  border: none;
+}
+#updateCard #updateStats:hover {
   cursor: pointer;
 }
-#updateStats .fas {
+#updateCard #updateStats .fas {
   cursor: pointer;
   color: #77b300;
 }
-#updateStats .fas:hover {
+#updateCard #updateStats .fas:hover {
   color: white;
 }
-#updateStats input[type=text] {
+#updateCard #updateStats input[type=text] {
   color: white;
   background-color: #282828;
 }
-
-#err0 {
+#updateCard #err0 {
+  border-radius: 0px;
   display: none;
 }
-
-#err1 {
+#updateCard #err1 {
+  border-radius: 0px;
   display: none;
 }
-
-#err2 {
+#updateCard #err2 {
+  border-radius: 0px;
   display: none;
 }
 
