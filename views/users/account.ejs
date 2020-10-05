@@ -14,7 +14,7 @@
                 <% } %>
                 
 
-                <form action="/admin/save/<%=locals.user.id%>" method="POST"></form>
+                <form action="/admin/save/<%=locals.user.id%>" method="POST">
                     <div class="row">
                         <img src="/images/users/avatar.png" class="img-fluid col">
                         <div class="form-group col">
@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="userLevel">Level</label>
-                                    <input type="text" class="form-control" id="userLevel" name="userLevel" value="<%= user.level %>" disabled>
+                                    <input type="text" class="form-control" id="userLevel" name="userLevel" value="<%= user.level %>" disabled style="text-align: center;">
                                 </div>
                             </div>
                             <div class="form-group col">
@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group col">
                                 <label for="oldPw">Old Password</label>
-                                <input type="password" class="form-control" id="oldPw" name="oldPw">
+                                <input type="password" class="form-control" id="oldPw" name="oldPw" autocomplete="off">
                             </div>
                             <div class="form-group col">
                                 <label for="newPw">New Password</label>

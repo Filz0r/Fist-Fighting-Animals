@@ -1,0 +1,26 @@
+#updateStats {
+    &:hover {
+        cursor: pointer;
+    }
+    .fas {
+        cursor: pointer;
+        color: $mainColor;
+        &:hover {
+            color: rgb(255, 255, 255);
+        }
+    }
+    input[type="text"] {
+        color: white;
+        background-color:$bgColor;
+    }
+}
+
+#err0 {
+    display: none;
+}
+#err1 {
+    display: none;
+}
+#err2 {
+    display: none;
+}

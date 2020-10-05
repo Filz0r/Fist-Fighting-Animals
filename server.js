@@ -1,8 +1,6 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-const registerRouter = require('./routes/register')
-const loginRouter = require('./routes/login')
 const passport = require('passport')
 const flash = require('connect-flash')
 const session = require('express-session')
@@ -13,7 +11,7 @@ const app = express()
 
 app.use(expressLayouts);
 app.set('view engine', 'ejs')
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
 app.use(upload())
 
@@ -22,11 +20,15 @@ app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
+    name: 'Fist Fighting Animals',
     saveUninitialized: true,
-    cookie:{_expires : 7200000}
+    cookie:{
+        _expires : 7200000
+    }
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+
 
 //global error variables
 app.use( (req, res, next) => {
@@ -39,8 +41,8 @@ app.use( (req, res, next) => {
 
 // routes 
 app.use('/', require('./routes/index'))
-app.use('/login', loginRouter)
-app.use('/register', registerRouter)
+app.use('/login', require('./routes/login'))
+app.use('/register', require('./routes/register'))
 app.use('/admin', require('./routes/admin'))
 app.use('/account', require('./routes/users/account'))
 app.use('/fight', require('./routes/users/fight'))

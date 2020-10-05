@@ -30,7 +30,7 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
                     admin: false,
                     level: 1,
                     attack: 1,
-                    deffense: 1,
+                    defense: 1,
                     HP: 10,
                     storyLvl: 1,
                     pointsToAdd: 0

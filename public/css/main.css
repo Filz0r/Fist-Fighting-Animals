@@ -1,4 +1,37 @@
-body { padding-top: 70px; }
-@media screen and (max-width: 768px) {
-    body { padding-top: 70px; }
+body {
+  padding-top: 70px;
 }
+
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 40px;
+  }
+}
+#updateStats:hover {
+  cursor: pointer;
+}
+#updateStats .fas {
+  cursor: pointer;
+  color: #77b300;
+}
+#updateStats .fas:hover {
+  color: white;
+}
+#updateStats input[type=text] {
+  color: white;
+  background-color: #282828;
+}
+
+#err0 {
+  display: none;
+}
+
+#err1 {
+  display: none;
+}
+
+#err2 {
+  display: none;
+}
+
+/*# sourceMappingURL=main.css.map */
