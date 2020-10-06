@@ -7,6 +7,7 @@ const session = require('express-session')
 const expressLayouts = require('express-ejs-layouts')
 require('./controllers/passport')(passport)
 const upload = require('express-fileupload')
+const cookieParser = require('cookie-parser')
 const app = express()
 
 app.use(expressLayouts);
@@ -14,6 +15,7 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
 app.use(upload())
+app.use(cookieParser('secret'))
 
 // passport 
 app.use(flash())
@@ -23,7 +25,8 @@ app.use(session({
     name: 'Fist Fighting Animals',
     saveUninitialized: true,
     cookie:{
-        _expires : 7200000
+        _expires : 7200000,
+        sameSite: 'Lax'
     }
 }))
 app.use(passport.initialize())

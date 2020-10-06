@@ -1,0 +1,23 @@
+#fightCard {
+    img{
+        max-width: 256px;
+    }
+    #animalLevel {
+        float: right;
+    }
+    .card-header {
+        background-color: $mainColor;
+        color: $bgColor;
+        font-size: large;
+        text-align: justify;
+    }
+    .badge {
+        background-color: $mainColor;
+        color: $bgColor;
+        font-size: large;
+        text-align: justify;
+    }
+    #user {
+        float: right;
+    }
+}

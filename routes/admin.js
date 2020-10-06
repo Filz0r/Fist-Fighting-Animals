@@ -98,7 +98,7 @@ router.get('/addAnimal', checkAuthenticated, async (req, res) => {
 
 router.post('/addAnimal', checkAuthenticated, async (req, res) => {
     if (req.user.admin) {
-        const { name, category, animalLevel: level, animalDefense: defense, animalAttack: attack, animalHP: HP } = req.body
+        const { name, category, animalLevel: level, animalDefense: defense, animalAttack: attack, animalHP: HP, storyLvl, pointsToAdd, coinsDrop } = req.body
         const id = await Animal.countDocuments()
         const file = req.files.animalPictures
         const fileExtension = file.mimetype.slice(6, file.mimetype.length)
@@ -116,7 +116,10 @@ router.post('/addAnimal', checkAuthenticated, async (req, res) => {
                     attack,
                     defense,
                     HP,
-                    img_path: `/images/animals/${id}.${fileExtension}`
+                    img_path: `/images/animals/${id}.${fileExtension}`,
+                    storyLvl,
+                    pointsToAdd,
+                    coinsDrop
                 })
                 n.save()
                 req.flash('changes', `Added ${ name } to the animal list!`)
@@ -163,7 +166,6 @@ router.post('/saveAnimal/:id', checkAuthenticated, async (req, res) => {
 router.post('/deleteAnimal/:id', checkAuthenticated, async (req, res) => {
     if (req.user.admin) {
         const animalToDelete = await Animal.findByIdAndDelete({ _id: req.params.id })
-        console.log(animalToDelete)
         req.flash('changes', `${animalToDelete.name} was deleted!`)
         res.redirect('/admin')
     } else {

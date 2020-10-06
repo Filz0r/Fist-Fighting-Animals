@@ -26,7 +26,9 @@
         <%  } %>">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item<% if(path == '/fight' ) {%>
+          active       
+    <%  } %>">
           <a class="nav-link" href="/fight">Fight</a>
         </li>
         <li class="nav-item <% if(path == '/user' ) {%>
@@ -62,7 +64,7 @@
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f15c0c7914.js" crossorigin="anonymous"></script>
-  <% if(locals.user) { %>
+  <% if(locals.path == '/fight') { %>
   <script src="js/actions.js"></script>
   <% } %>
   <% if(locals.path == '/user') { %>

@@ -1,0 +1,54 @@
+<div class="card border-success p-4" id="fightCard">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md" id="animal">
+                <div class="card border-success">
+                    <div class="card-header">
+                        <span class="badge badge-primary">
+                            <span id="animalName"><%= animal.name %> </span>
+                            <span id="animalLevel"> Lvl.<%= animal.level %></span>
+                        </span>
+                    </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <img src="<%= animal.img_path%>" class="img-fluid"/>
+                                <div class="card-text">
+                                    <span class="badge badge-primary">
+                                        HP: <%= animal.HP %>
+                                        <br>
+                                        Attack: <%= animal.attack %>
+                                        <br>
+                                        Defense: <%= animal.defense %>
+    
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+
+            </div>
+            <div class="col-md" id="user">
+                <div class="card">
+                    <div class="row">
+                        <img src="images/users/avatar.png" width="128px" />
+
+                        name: <%= user.name %>
+                        LVL: <%= user.level %>
+                        Attack <%= user.attack %>
+                        Defense <%= user.defense %>
+                        Life <%= user.HP %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <button type="button" class="btn btn-dark btn-lg" onclick="fight('attack');">Lutar!</button>
+
+        <button type="button" class="btn btn-dark btn-lg" onclick="fight(deffend);">Defend!</button>
+
+    </div>
+
+</div>

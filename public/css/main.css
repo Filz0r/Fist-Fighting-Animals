@@ -11,8 +11,12 @@ body {
   background-color: #282828;
   border: none;
 }
-#updateCard #updateStats:hover {
-  cursor: pointer;
+#updateCard .form-control {
+  border: none !important;
+}
+#updateCard .form-control:focus {
+  border: none !important;
+  box-shadow: none !important;
 }
 #updateCard #updateStats .fas {
   cursor: pointer;
@@ -22,6 +26,7 @@ body {
   color: white;
 }
 #updateCard #updateStats input[type=text] {
+  cursor: default;
   color: white;
   background-color: #282828;
 }
@@ -36,6 +41,28 @@ body {
 #updateCard #err2 {
   border-radius: 0px;
   display: none;
+}
+
+#fightCard img {
+  max-width: 256px;
+}
+#fightCard #animalLevel {
+  float: right;
+}
+#fightCard .card-header {
+  background-color: #77b300;
+  color: #282828;
+  font-size: large;
+  text-align: justify;
+}
+#fightCard .badge {
+  background-color: #77b300;
+  color: #282828;
+  font-size: large;
+  text-align: justify;
+}
+#fightCard #user {
+  float: right;
 }
 
 /*# sourceMappingURL=main.css.map */

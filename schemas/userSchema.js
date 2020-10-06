@@ -28,6 +28,14 @@ const userSchema = new mongoose.Schema({
     HP: reqNumber,
     storyLvl: reqNumber,
     pointsToAdd: reqNumber,
+    coins: {
+        type: Number,
+        required: false
+    },
+    storyCounter: {
+        type: Number,
+        required: false
+    }
 
 })
 
