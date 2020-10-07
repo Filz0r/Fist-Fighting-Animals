@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
     storyCounter: {
         type: Number,
         required: false
+    },
+    new: {
+        type: Boolean,
+        required: false    
     }
 
 })
