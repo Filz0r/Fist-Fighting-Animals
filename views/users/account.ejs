@@ -1,64 +1,77 @@
 <% if(user) { %>
-    <div class="card border-success mb-3">
-        <div class="card-header">
-            <h3 class="text-success">Edit: <%= user.username %></h3>
+<div class="card border-success mb-3" id="accountCard">
+    <div class="card-body">
+        <%if(changes.length != 0) {%>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <%= changes %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-                    <div class="card-body">
-                <%if(changes.length != 0) {%>
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    <%= changes %>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <% } %>
+        <div class="row" id="mainRow">
+            <div class="col-4">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+                        aria-controls="v-pills-home" aria-selected="true">General</a>
+                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+                        aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
+                        aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+                        aria-controls="v-pills-settings" aria-selected="false">Settings</a>
                 </div>
-                <% } %>
-                
-
-                <form action="/account/<%=locals.user.id%>" method="POST">
-                    <div class="row">
-                        <img src="/images/users/avatar.png" class="img-fluid col">
-                        <div class="form-group col">
-                            <div class="form-row col">
-                                <div class="form-group col-md-10">
-                                    <label for="username">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username"
-                                        value="<%= user.username %>">
+            </div>
+            <div class="col-8" id="content">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                        aria-labelledby="v-pills-home-tab">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="card" id="userForm">
+                                    <form action="/account/<%=locals.user.id%>" method="POST">
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                value="<%= user.username %>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Confirm Password</label>
+                                            <input type="password" class="form-control" id="password" name="password">
+                                        </div>
+                                    <button type="submit" class="btn btn-outline-success float-right">Save</button>
+                                    </form>
                                 </div>
-                                <div class="form-group col-md-2">
-                                    <label for="userLevel">Level</label>
-                                    <input type="text" class="form-control" id="userLevel" name="userLevel" value="<%= user.level %>" disabled style="text-align: center;">
+                            </div>
+                            <div class="col-4">
+                                <div class="card" id="currentUser">
+                                    <img src="/images/users/avatar.png" class="card-img-top">
+                                    <div class="card-header">
+                                        <span id="animalName"><%= user.username %> </span>
+                                        <span id="animalLevel">Lvl.<%= user.level %></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group col">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
-                            </div>
-                            <div class="form-group col">
-                                <label for="oldPw">Old Password</label>
-                                <input type="password" class="form-control" id="oldPw" name="oldPw" autocomplete="off">
-                            </div>
-                            <div class="form-group col">
-                                <label for="newPw">New Password</label>
-                                <input type="password" class="form-control" id="newPw" name="newPw">
-                            </div>
-                            <div class="form-group col">
-                                <label for="checkNewPw">Confirm New Password</label>
-                                <input type="password" class="form-control" id="checkNewPw" name="checkNewPw">
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer pb-1 mb-0">
-                        <button type="submit" class="btn btn-outline-success btn-block mb-2">Save Changes</button>
-                    </div>
-                    <div class="card-footer pt-0" style="border-top: 0px">
-                        <form action="/admin/delete/<%= locals.user.id %>" method="POST">
-                            <button type="submit" class="btn btn-outline-danger btn-block">Delete User</button>
-                        </form>
-                    </div>
-                </form>
 
+
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">...</div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                        aria-labelledby="v-pills-messages-tab">...</div>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                        aria-labelledby="v-pills-settings-tab">...</div>
+                </div>
             </div>
+        </div>
+
 
 
     </div>
-    <% } %>
+
+
+
+
+</div>
+<% } %>
