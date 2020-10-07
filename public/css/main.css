@@ -1,12 +1,31 @@
 body {
   padding-top: 70px;
+  font-size: 1rem;
 }
 
 @media screen and (max-width: 768px) {
   body {
-    padding-top: 40px;
+    padding-top: 70px;
   }
 }
+.navbar {
+  background-color: #77b300;
+}
+
+.nav-link,
+.navbar-brand {
+  color: #282828;
+  font-weight: bold;
+}
+.nav-link:hover,
+.navbar-brand:hover {
+  color: #4a4a4a;
+}
+
+.nav-item.active .nav-link {
+  color: white;
+}
+
 #updateCard .card-header {
   background-color: #282828;
   border: none;
@@ -68,8 +87,18 @@ body {
   font-size: large;
   text-align: justify;
 }
-.card#fightCard .card#user .card-body {
-  align-self: flex-end;
+.card#fightCard .progress {
+  background-color: white;
+}
+.card#fightCard .progress-bar {
+  background-color: #77b300;
+}
+
+.modal#lossModal {
+  background-color: black;
+}
+.modal#winModal {
+  background-color: black;
 }
 
 /*# sourceMappingURL=main.css.map */

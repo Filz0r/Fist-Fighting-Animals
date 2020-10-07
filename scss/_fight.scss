@@ -23,13 +23,20 @@
             font-size: large;
             text-align: justify;
         }
-        .card {
-            &#user {
-                .card-body {
-                    align-self: flex-end;
-                }
-                
-            }
+        .progress {
+            background-color: white;
         }
-    }    
+        .progress-bar {
+            background-color: $mainColor;
+        }
+    }
+}
+
+.modal {
+    &#lossModal {
+        background-color: black;
+    }
+    &#winModal {
+        background-color: black;
+    }
 }
