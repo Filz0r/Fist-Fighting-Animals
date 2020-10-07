@@ -1,0 +1,27 @@
+.card {
+    &#accountCard {
+        height: 60vh;
+        img {
+            max-width: 256px;
+            max-height: 256px;
+        }
+
+        #mainRow {
+            min-height: 30vh;
+
+            #content {
+                padding-top: 7em;
+            }
+        }
+
+        .card {
+            &#currentUser {
+                float: right;
+            }
+            &#userForm {
+                height: 100%;
+                border: none;
+            }
+        }
+    }
+}
