@@ -101,4 +101,25 @@ body {
   background-color: black;
 }
 
+.card#accountCard {
+  height: 60vh;
+}
+.card#accountCard img {
+  max-width: 256px;
+  max-height: 256px;
+}
+.card#accountCard #mainRow {
+  min-height: 30vh;
+}
+.card#accountCard #mainRow #content {
+  padding-top: 7em;
+}
+.card#accountCard .card#currentUser {
+  float: right;
+}
+.card#accountCard .card#userForm {
+  height: 100%;
+  border: none;
+}
+
 /*# sourceMappingURL=main.css.map */
