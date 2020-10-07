@@ -1,54 +1,98 @@
-<div class="card border-success p-4" id="fightCard">
+<div class="card border-success" id="fightCard">
     <div class="card-body">
-        <div class="row">
-            <div class="col-md" id="animal">
-                <div class="card border-success">
-                    <div class="card-header">
-                        <span class="badge badge-primary">
-                            <span id="animalName"><%= animal.name %> </span>
-                            <span id="animalLevel"> Lvl.<%= animal.level %></span>
-                        </span>
-                    </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <img src="<%= animal.img_path%>" class="img-fluid"/>
-                                <div class="card-text">
-                                    <span class="badge badge-primary">
-                                        HP: <%= animal.HP %>
-                                        <br>
-                                        Attack: <%= animal.attack %>
-                                        <br>
-                                        Defense: <%= animal.defense %>
-    
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+        <div class="row row-cols-3">
+            <div class="card col-md-5" id="animal">
+                <div class="card-header">
+                    <span id="animalName"><%= animal.name %> </span>
+                    <span id="animalLevel"><%= animal.level %></span>
                 </div>
+                <div class="card-body">
 
+                    <img src="<%= animal.img_path%>" class="img-fluid" />
+                    <div class="card-text">
+
+                        HP: <span id="animalHP"><%= animal.HP %></span><span id="animalHpFixed">/<%= animal.HP %></span>
+
+                        Attack: <span id="animalAttack"><%= animal.attack %></span>
+                        Defense: <span id="animalDefense"><%= animal.defense %></span>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="card col-md-2" id="spacer">
 
             </div>
-            <div class="col-md" id="user">
-                <div class="card">
-                    <div class="row">
-                        <img src="images/users/avatar.png" width="128px" />
+            <div class="card col-md-5" id="user">
+                <div class="card-header">
+                    <span id="userName"><%= user.username %> </span>
+                    <span id="userLevel"><%= user.level %></span>
+                </div>
+                <div class="card-body">
+                    <img src="<%= animal.img_path%>" class="img-fluid" />
+                    <div class="card-text">
+                        HP: <span id="userHP"><%= user.HP %></span><span id="userHpFixed">/<%= user.HP %></span>
 
-                        name: <%= user.name %>
-                        LVL: <%= user.level %>
-                        Attack <%= user.attack %>
-                        Defense <%= user.defense %>
-                        Life <%= user.HP %>
+                        Attack: <span id="userAttack"><%= user.attack %></span>
+                        Defense: <span id="userDefense"><%= user.defense %></span>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-
     <div class="card-footer">
-        <button type="button" class="btn btn-dark btn-lg" onclick="fight('attack');">Lutar!</button>
+        <div class="btn-group btn-group-lg btn-block">
+            <button type="button" class="btn btn-outline-success" onclick="fight('attack');">Punch!</button>
 
-        <button type="button" class="btn btn-dark btn-lg" onclick="fight(deffend);">Defend!</button>
+            <button type="button" class="btn btn-outline-danger" onclick="fight('defend');">Defend!</button>
+        </div>
+
 
     </div>
+</div>
 
+<div class="modal faded" id="winModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="winModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="winModal">Congratulations! You beat <%= animal.name %>! </h5>
+            </div>
+            <form action="/fight" method="POST">
+                <div class="modal-body">
+                    <p>Your rewards are: </p>
+                    <ul>
+                        <li>Coins x<%= animal.coinsDrop %></li>
+                        <li><%= animal.pointsToAdd %> upgrade point(s) </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-success">Understood, bring me the next one!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal faded" id="lossModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="lossModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lossModal">Oh NO! You loss to <%= animal.name %>! </h5>
+            </div>
+            <form action="/fight/loss" method="POST">
+                <div class="modal-body">
+                    <p>You will not lose anything for now but my recomendations are to:</p>
+                    <ul>
+                        <li>Try upgrading your stats in <a href="/user">here</a></li>
+                        <li>Try again after that!</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-danger">Understood, let me try again then!</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
