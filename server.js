@@ -33,7 +33,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-//global error variables
+//global variables
 app.use( (req, res, next) => {
     res.locals.messages = req.flash('message')
     res.locals.error = req.flash('error')
