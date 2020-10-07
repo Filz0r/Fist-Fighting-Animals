@@ -11,8 +11,8 @@
 
 <body>
   <% if(typeof user != 'undefined') { %>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top d-flex flex-row-reverse">
-    <a href="/logout" class="btn btn-outline-success mr-3">Logout</a>
+  <nav class="navbar navbar-expand-lg fixed-top d-flex flex-row-reverse">
+    <a href="/logout" class="btn btn-outline-danger mr-3">Logout</a>
     <a class="navbar-brand" href="/">Fist Fighting Animals</a>
     <button class="navbar-toggler" style="float:right" type="button" data-toggle="collapse" data-target="#nav"
       aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,7 @@
         <%  } %>">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item<% if(path == '/fight' ) {%>
+        <li class="nav-item <% if(path == '/fight' ) {%>
           active       
     <%  } %>">
           <a class="nav-link" href="/fight">Fight</a>
@@ -36,16 +36,16 @@
     <%  } %>">
           <a class="nav-link" href="/user">User</a>
         </li>
-        <li class="nav-item<% if(path == '/account' ) {%>
+        <li class="nav-item <% if(path == '/account' ) {%>
           active       
     <%  } %>">
           <a class="nav-link" href="/account">Account</a>
         </li>
         <% if (user.admin) { %>
-        <li class="nav-item">
-          <a href="/admin" class="nav-link<% if(path == '/admin' ) {%>
-            active       
-      <%  } %>">Admin</a>
+        <li class="nav-item <% if(path == '/admin' ) {%>
+          active       
+        <%  } %>">
+          <a href="/admin" class="nav-link">Admin</a>
         </li>
         <% } %>
       </ul>
