@@ -1,23 +1,35 @@
-#fightCard {
-    img{
-        max-width: 256px;
-    }
-    #animalLevel {
-        float: right;
-    }
-    .card-header {
-        background-color: $mainColor;
-        color: $bgColor;
-        font-size: large;
-        text-align: justify;
-    }
-    .badge {
-        background-color: $mainColor;
-        color: $bgColor;
-        font-size: large;
-        text-align: justify;
-    }
-    #user {
-        float: right;
-    }
+.card {
+    &#fightCard {
+        align-content: space-around;
+        img {
+            max-width: 256px;
+        }
+        #animalLevel {
+            float: right;
+        }
+        #userLevel {
+            float: right;
+        }
+        .card {
+            border: none;
+        }
+        .card-footer {
+            border: none;
+            background-color: $bgColor;
+        }
+        .card-header {
+            background-color: $mainColor;
+            color: $bgColor;
+            font-size: large;
+            text-align: justify;
+        }
+        .card {
+            &#user {
+                .card-body {
+                    align-self: flex-end;
+                }
+                
+            }
+        }
+    }    
 }

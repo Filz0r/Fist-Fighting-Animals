@@ -43,26 +43,33 @@ body {
   display: none;
 }
 
-#fightCard img {
+.card#fightCard {
+  align-content: space-around;
+}
+.card#fightCard img {
   max-width: 256px;
 }
-#fightCard #animalLevel {
+.card#fightCard #animalLevel {
   float: right;
 }
-#fightCard .card-header {
+.card#fightCard #userLevel {
+  float: right;
+}
+.card#fightCard .card {
+  border: none;
+}
+.card#fightCard .card-footer {
+  border: none;
+  background-color: #282828;
+}
+.card#fightCard .card-header {
   background-color: #77b300;
   color: #282828;
   font-size: large;
   text-align: justify;
 }
-#fightCard .badge {
-  background-color: #77b300;
-  color: #282828;
-  font-size: large;
-  text-align: justify;
-}
-#fightCard #user {
-  float: right;
+.card#fightCard .card#user .card-body {
+  align-self: flex-end;
 }
 
 /*# sourceMappingURL=main.css.map */
