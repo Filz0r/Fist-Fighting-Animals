@@ -39,6 +39,7 @@ app.use( (req, res, next) => {
     res.locals.error = req.flash('error')
     res.locals.changes = req.flash('changes')
     res.locals.paths = req.flash('path')
+    res.locals.success = req.flash('success')
     next()
 })
 
