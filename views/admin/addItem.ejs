@@ -1,0 +1,80 @@
+<div class="card border-success p-3">
+    <div class="card-header">
+        <h2 class="text-success">Add an Item </h2>
+    </div>
+    <div class="card-body">
+        <form action="/admin/addItem" method="POST">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" value="">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="attack">Attack</label>
+                            <input type="number" class="form-control" id="attack" name="attack" value="0">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="defense">Defense</label>
+                            <input type="number" class="form-control" id="defense" name="defense" value="0">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="cost">Cost</label>
+                            <input type="number" class="form-control" id="cost" name="cost" value="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-md-4 pt-0">Category</legend>
+                            <div class="col-md-8">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="categoryRadios"
+                                        id="categoryRadios1" value="Armor" checked>
+                                    <label class="form-check-label" for="categoryRadios1">
+                                        Armor
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="categoryRadios"
+                                        id="categoryRadios2" value="consumable">
+                                    <label class="form-check-label" for="categoryRadios2">
+                                        Consumable
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="categoryRadios"
+                                        id="categoryRadios3" value="keyItem">
+                                    <label class="form-check-label" for="categoryRadios3">
+                                        Key Item
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group row">
+                        <div class="col-md-4">Checkbox</div>
+                        <div class="col-md-8">
+                            <div class="form-check">
+                                <input class="form-check-input" name="equipable" type="checkbox" id="equipable"
+                                    value="true">
+                                <label class="form-check-label" for="equipable">
+                                    Equipable
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col">
+                    <button type="submit" class="btn btn-outline-success btn-block">Add Item</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
