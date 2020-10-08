@@ -4,29 +4,76 @@ const router = express.Router()
 const { checkAuthenticated } = require('../controllers/AuthController')
 const User = require('../schemas/userSchema')
 const Animal = require('../schemas/animalSchema')
-const fs = require('fs')
-const path = require('path')
-const root = process.env.INIT_CWD
+const Items = require('../schemas/itemSchema')
 
 router.get('/', checkAuthenticated, async (req, res) => {
     if (req.user.admin) {
         const userData = []
         const animalData = []
+        const itemData = []
         const animals = await Animal.find()
-        animals.forEach(animal => animalData.push({ id: animal.id, name: animal.name, level: animal.level, category: animal.category, path: animal.img_path }))
+        animals.forEach(animal => animalData.push({
+            id: animal.id,
+            name: animal.name,
+            level: animal.level,
+            category: animal.category,
+            path: animal.img_path
+        }))
         const users = await User.find()
-        users.forEach(user => { userData.push({ id: user.id, name: user.username, email: user.email, joinDate: user.joinDate.toLocaleString() }) })
+        users.forEach(user => {
+            userData.push({
+                id: user.id,
+                name: user.username,
+                email: user.email,
+                joinDate: user.joinDate.toLocaleString()
+            })
+        })
         const path = res.req.originalUrl
-        res.render('admin/admin.ejs', { user: req.user, users: userData, animals: animalData, path: path })
+        const items = await Items.find()
+        items.forEach(item => itemData.push({
+            id: item.id,
+            name: item.name,
+            category: item.category,
+            cost: item.cost
+        }))
+        res.render('admin/admin.ejs', { user: req.user, users: userData, animals: animalData, items: itemData, path: path })
     } else {
         req.flash('message', 'You don\'t have access to this page!')
         res.redirect('/')
     }
 })
 
-router.get('/addUser', checkAuthenticated, async (req, res) => {
+router.get('/addItem', checkAuthenticated, async (req, res) => {
     if (req.user.admin) {
+        const path = req.baseUrl
+        res.render('admin/addItem', { user: req.user, path: path })
+    } else {
+        req.flash('message', 'You don\'t have access to this page!')
+        res.redirect('/')
+    }
+})
 
+router.post('/addItem', checkAuthenticated, async (req, res) => {
+    if (req.user.admin) {
+        const { name, attack, defense, cost, categoryRadios: category} = req.body
+        let { equipable } = req.body
+        const id = await Items.countDocuments()
+        const path = req.baseUrl
+        typeof equipable == 'undefined' ? equipable = false : equipable
+        const newItem = new Items({
+            _id: id,
+            name,
+            category,
+            effects: {
+                attack,
+                defense
+            },
+            cost,
+            equipable
+        })
+        newItem.save()
+        req.flash('changes', `Added ${name} to the item list!`)
+        res.redirect('/admin')
     } else {
         req.flash('message', 'You don\'t have access to this page!')
         res.redirect('/')
@@ -104,8 +151,8 @@ router.post('/addAnimal', checkAuthenticated, async (req, res) => {
         const fileExtension = file.mimetype.slice(6, file.mimetype.length)
         file.name = `${id}.${fileExtension}`
         const uploadPath = `public/images/animals/${file.name}`
-        file.mv( uploadPath, err => {
-            if(err) {
+        file.mv(uploadPath, err => {
+            if (err) {
                 return console.log(err)
             } else {
                 const n = new Animal({
@@ -122,10 +169,10 @@ router.post('/addAnimal', checkAuthenticated, async (req, res) => {
                     coinsDrop
                 })
                 n.save()
-                req.flash('changes', `Added ${ name } to the animal list!`)
+                req.flash('changes', `Added ${name} to the animal list!`)
                 res.redirect('/admin')
             }
-        })        
+        })
     } else {
         req.flash('message', 'You don\'t have access to this page!')
         res.redirect('/')
@@ -145,7 +192,7 @@ router.get('/editAnimal/:id', checkAuthenticated, async (req, res) => {
 
 router.post('/saveAnimal/:id', checkAuthenticated, async (req, res) => {
     if (req.user.admin) {
-        const { name, category, animalLevel: level, animalAttack: attack, animalDefense: defense, animalHP: HP} = req.body
+        const { name, category, animalLevel: level, animalAttack: attack, animalDefense: defense, animalHP: HP } = req.body
         await Animal.findByIdAndUpdate({ _id: req.params.id }, {
             name,
             category,
@@ -155,7 +202,7 @@ router.post('/saveAnimal/:id', checkAuthenticated, async (req, res) => {
             HP,
 
         })
-        req.flash('changes', `Animal ${ name } was updated`)
+        req.flash('changes', `Animal ${name} was updated`)
         res.redirect('/admin')
     } else {
         req.flash('message', 'You don\'t have access to this page!')
