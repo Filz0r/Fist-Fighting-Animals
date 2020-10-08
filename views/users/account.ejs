@@ -26,7 +26,7 @@
                     <a class="nav-link" id="email-tab" data-toggle="pill" href="#email" role="tab" aria-controls="email" aria-selected="false">
                         Email
                     </a>
-                    <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
+                    <a class="nav-link" id="passwords-tab" data-toggle="pill" href="#passwords" role="tab" aria-controls="passwords" aria-selected="false">
                         Password
                     </a>
                 </div>
@@ -112,8 +112,47 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
-                        ...
+                    <div class="tab-pane fade" id="passwords" role="tabpanel" aria-labelledby="passwords-tab">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="card" id="userForm">
+                                    <div class="card-title">
+                                        <p>Change your password, dont forget to make it secure!</p>
+                                    </div>
+                                    <form action="/account/<%=locals.user.id%>" method="POST">
+                                        <input type="hidden" class="form-control" id="formInfo" name="formInfo"
+                                            value="password">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Current Password</label>
+                                            <input type="password" class="form-control" id="password" name="password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="newPassword">New Password</label>
+                                            <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confNewPassword">Confirm New Password</label>
+                                            <input type="password" class="form-control" id="confNewPassword" name="confNewPassword" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-success float-right">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card" id="currentUser">
+                                    <img src="/images/users/avatar.png" class="card-img-top">
+                                    <div class="card-header">
+                                        <span id="userName"><%= user.username %> </span><br>
+                                        <span id="userLevel">Lvl.<%= user.level %></span><br>
+                                        <span id="userCoins">Coins: <%= user.coins %> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
