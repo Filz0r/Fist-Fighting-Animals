@@ -9,7 +9,35 @@ router.get('/', checkAuthenticated, async (req, res) => {
     res.render('users/account', { user: req.user, path: path })
 })
 router.post('/:id', checkAuthenticated, async (req, res) => {
-    const { newPw, checkNewPw } = req.body
+    const { formInfo, username, password, email, newEmail, confirmNewEmail } = req.body
+    const { coins, userPw } = req.user
+    const dbNames = await User.find({username: username})
+    if(formInfo == 'general') {
+        
+        if(await bcrypt.compare(password, userPw)) {
+            if(dbNames.length != 0) {
+                req.flash('changes', 'This username already exists!')
+                res.redirect('/account')
+            } else if (coins < 1000) {
+                req.flash('changes', 'You don\'t have enough coins!')
+                res.redirect('/account')
+            } else {
+                await User.findByIdAndUpdate({ _id: req.params.id }, {
+                    username: req.body.username,
+                    coins: coins - 1000
+                })
+                req.flash('success', 'You have changed your username!')
+                res.redirect('/account')
+            }          
+        } else {
+            req.flash('changes', 'Please provide a valid password!')
+            res.redirect('/account')
+        }
+
+    } else if (formInfo == 'email') {
+        console.log(req.body)
+    }
+    /*
         if (await bcrypt.compare(newPw, req.user.password)) {
             req.flash('changes', 'password is the same as old one')
             res.redirect(`/admin/edit/${req.params.id}`)
@@ -26,7 +54,7 @@ router.post('/:id', checkAuthenticated, async (req, res) => {
             })
             req.flash('changes', 'User edited!')
             res.redirect('/account')
-        }
+        }*/
 })
 
 module.exports = router
