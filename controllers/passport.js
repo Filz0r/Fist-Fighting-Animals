@@ -1,11 +1,12 @@
 const LocalStrategy = require('passport-local').Strategy
 const User = require('../schemas/userSchema')
 const bcrypt = require('bcrypt')
+const { setEmailToLowerCase } = require('./utils')
 
 function initialize(passport) {
 
   passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-    User.findOne({ email: email }).then(async user => {
+    User.findOne({ email: setEmailToLowerCase(email) }).then(async user => {
       if (!user) {
         return done(null, false, { message: 'No user with that email' })
       }
