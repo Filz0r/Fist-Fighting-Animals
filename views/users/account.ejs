@@ -2,8 +2,16 @@
 <div class="card border-success mb-3" id="accountCard">
     <div class="card-body">
         <%if(changes.length != 0) {%>
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <%= changes %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } %>
+        <%if(success.length != 0) {%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= success %>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -11,25 +19,31 @@
         <% } %>
         <div class="row" id="mainRow">
             <div class="col-4">
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-                        aria-controls="v-pills-home" aria-selected="true">General</a>
-                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
-                        aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
-                        aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
-                        aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                <div class="nav flex-column nav-pills" id="accountTabs" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="general-tab" data-toggle="pill" href="#general" role="tab" aria-controls="general" aria-selected="true">
+                        General
+                    </a>
+                    <a class="nav-link" id="email-tab" data-toggle="pill" href="#email" role="tab" aria-controls="email" aria-selected="false">
+                        Email
+                    </a>
+                    <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
+                        Password
+                    </a>
                 </div>
             </div>
             <div class="col-8" id="content">
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                        aria-labelledby="v-pills-home-tab">
+                <div class="tab-content" id="accountTabsContent">
+                    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
                         <div class="row">
                             <div class="col-8">
                                 <div class="card" id="userForm">
+                                    <div class="card-title">
+                                        <p>In here you can change your username for 1000 coins, attention that it will
+                                            check if the username already exists before changing it</p>
+                                    </div>
                                     <form action="/account/<%=locals.user.id%>" method="POST">
+                                        <input type="hidden" class="form-control" id="formInfo" name="formInfo"
+                                            value="general">
                                         <div class="form-group">
                                             <label for="username">Username</label>
                                             <input type="text" class="form-control" id="username" name="username"
@@ -37,9 +51,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Confirm Password</label>
-                                            <input type="password" class="form-control" id="password" name="password">
+                                            <input type="password" class="form-control" id="password" name="password" required>
                                         </div>
-                                    <button type="submit" class="btn btn-outline-success float-right">Save</button>
+                                        <button type="submit" class="btn btn-outline-success float-right">Save</button>
                                     </form>
                                 </div>
                             </div>
@@ -47,21 +61,60 @@
                                 <div class="card" id="currentUser">
                                     <img src="/images/users/avatar.png" class="card-img-top">
                                     <div class="card-header">
-                                        <span id="animalName"><%= user.username %> </span>
-                                        <span id="animalLevel">Lvl.<%= user.level %></span>
+                                        <span id="userName"><%= user.username %> </span><br>
+                                        <span id="userLevel">Lvl.<%= user.level %></span><br>
+                                        <span id="userCoins">Coins: <%= user.coins %> </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                        aria-labelledby="v-pills-profile-tab">...</div>
-                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                        aria-labelledby="v-pills-messages-tab">...</div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                        aria-labelledby="v-pills-settings-tab">...</div>
+                    <div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="email-tab">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="card" id="userForm">
+                                    <div class="card-title">
+                                        <p>In here you can change the email for this account, this will cost you 10000 coins, unless you can provide proof that your email was stolen to a admin this cost will always apply.</p>
+                                    </div>
+                                    <form action="/account/<%=locals.user.id%>" method="POST">
+                                        <input type="hidden" class="form-control" id="formInfo" name="formInfo"
+                                            value="email">
+                                        <div class="form-group">
+                                            <label for="email">Current email</label>
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                value="<%= user.email %>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="newEmail">New email</label>
+                                            <input type="email" class="form-control" id="newEmail" name="newEmail">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirmNewEmail">Confirm new email</label>
+                                            <input type="email" class="form-control" id="confirmNewEmail" name="confirmNewEmail">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Confirm Password</label>
+                                            <input type="password" class="form-control" id="password" name="password" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-success float-right">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card" id="currentUser">
+                                    <img src="/images/users/avatar.png" class="card-img-top">
+                                    <div class="card-header">
+                                        <span id="userName"><%= user.username %> </span><br>
+                                        <span id="userLevel">Lvl.<%= user.level %></span><br>
+                                        <span id="userCoins">Coins: <%= user.coins %> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+                        ...
+                    </div>
                 </div>
             </div>
         </div>
