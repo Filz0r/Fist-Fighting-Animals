@@ -39,6 +39,14 @@ const userSchema = new mongoose.Schema({
     new: {
         type: Boolean,
         required: false    
+    },
+    bag: {
+        type: Array,
+        required: false
+    },
+    armor: {
+        type: Object,
+        required: false
     }
 
 })
