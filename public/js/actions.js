@@ -1,7 +1,8 @@
 
 $('#animalBar').width('100%')
 $('#userBar').width('100%')
-function fight(action) {
+function fight(action, attackBuff, defenseBuff) {
+    console.log(action, attackBuff, defenseBuff)
     const animal = {
         name: $('#animalName').html(),
         level: + $('#animalLevel').html().substring(4).replace(/,/g, ''),
@@ -13,8 +14,8 @@ function fight(action) {
     const user = {
         name: $('#userName').html(),
         level: + $('#userLevel').html().substring(4).replace(/,/g, ''),
-        attack: + $('#userAttack').html().replace(/,/g, ''),
-        defense: + $('#userDefense').html().replace(/,/g, ''),
+        attack: + $('#userAttack').html().replace(/,/g, '') + parseInt(attackBuff),
+        defense: + $('#userDefense').html().replace(/,/g, '') + parseInt(defenseBuff),
         hp: + $('#userHP').html().replace(/,/g, ''),
         fixHP: + $('#userHpFixed').html().substring(1).replace(/,/g, '')
     }
@@ -23,8 +24,9 @@ function fight(action) {
         return `${result}%`
     }
     if (action == 'attack') {
-        animal.hp = Math.round(animal.hp - (user.attack * 0.65 + animal.defense * 0.35))
-        user.hp = Math.round(user.hp - (user.defense * 0.05 + animal.attack * 0.95))
+        animal.hp = Math.round(animal.hp - (user.attack * 0.90 - animal.defense * 0.10))
+        user.hp = Math.round(user.hp - (animal.attack * 0.90 - user.defense * 0.10))
+        console.log(user)
         if(animal.hp <= 0 && user.hp > 0) {
             $('#animalHP').html('0')
             $('#userHP').html(user.hp)
@@ -50,8 +52,9 @@ function fight(action) {
             $('#lossModal').show()
         }    
     } else if (action == 'defend') {
-        animal.hp = Math.round(animal.hp - (user.defense * 0.45 + animal.defense * 0.55))
-        user.hp = Math.round(user.hp - (user.defense * 0.05 + animal.attack * 0.95))
+        animal.hp = Math.round(animal.hp - (user.attack * 0.40 - animal.defense * 0.60))
+        user.hp = Math.round(user.hp - (animal.attack * 0.40))
+        console.log(user)
         if(animal.hp <= 0 && user.hp > 0) {
             $('#animalHP').html('0')
             $('#userHP').html(user.hp)
