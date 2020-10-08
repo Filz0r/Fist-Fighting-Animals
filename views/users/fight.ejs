@@ -43,7 +43,6 @@
                     </div>
                     <div class="card-text">
                         HP: <span id="userHP"><%= user.HP %></span><span id="userHpFixed">/<%= user.HP %></span>
-
                         Attack: <span id="userAttack"><%= user.attack %></span>
                         Defense: <span id="userDefense"><%= user.defense %></span>
                     </div>
@@ -54,9 +53,9 @@
     </div>
     <div class="card-footer">
         <div class="btn-group btn-group-lg btn-block">
-            <button type="button" class="btn btn-outline-success" onclick="fight('attack');">Punch!</button>
+            <button type="button" class="btn btn-outline-success" onclick="fight('attack', `<%= user.armor.attack %>`, `<%= user.armor.defense %>`)">Punch!</button>
 
-            <button type="button" class="btn btn-outline-danger" onclick="fight('defend');">Defend!</button>
+            <button type="button" class="btn btn-outline-danger" onclick="fight('defend', `<%= user.armor.attack %>`, `<%= user.armor.defense %>`)">Defend!</button>
         </div>
 
 
