@@ -87,6 +87,9 @@ router.post('/:id', checkAuthenticated, async (req, res) => {
                 res.redirect('/account')
             }
         }
+    } else {
+        req.flash('changes', 'There was an error')
+        res.redirect('/account')
     }
 })
 
