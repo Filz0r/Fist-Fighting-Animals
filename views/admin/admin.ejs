@@ -10,10 +10,11 @@
 <nav class="nav nav-tabs nav-fill" role="tablist">
     <a class="nav-link active" href="#userTable" role="tab" data-toggle="tab" aria-selected="true">User</a>
     <a class="nav-link" id="animalChanger" href="#animalTable" role="tab" data-toggle="tab">Animals</a>
+    <a class="nav-link" id="itemChanger" href="#itemTable" role="tab" data-toggle="tab">Items</a>
 </nav>
 <div class="tab-content">
     <div class="table-responsive tab-pane fade show active" id="userTable" role="tabpanel">
-        <table class="table " >
+        <table class="table ">
             <thead>
                 <tr>
                     <th scope="col">id</th>
@@ -35,8 +36,8 @@
                 </tr>
                 <% } %>
             </tbody>
-            
-        </table>       
+
+        </table>
     </div>
     <div class="table-responsive tab-pane fade show" id="animalTable" role="tabpanel">
         <table class="table">
@@ -61,11 +62,40 @@
                 </tr>
                 <% } %>
             </tbody>
-            
+
         </table>
         <form action="/admin/addAnimal" method="GET">
             <button class="btn btn-outline-success btn-block">Add Animal</button>
-        </form>        
+        </form>
+    </div>
+    <div class="table-responsive tab-pane fade show" id="itemTable" role="tabpanel">
+        <table class="table">
+            <thead class="w-100">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < items.length; i++) { %>
+                <tr>
+                    <th scope="row"><%= items[i].id %></th>
+                    <td><%= items[i].name %></td>
+                    <td><%= items[i].category %></td>
+                    <td><%= typeof items[i].cost != 'undefined' ? items[i].cost : 'None' %></td>
+                    <td><a href="admin/editItem/<%=items[i].id%>"><img class="mr-1" src="../images/edit.png"
+                                alt="edit" /></a></td>
+                </tr>
+                <% } %>
+            </tbody>
+
+        </table>
+        <form action="/admin/addItem" method="GET">
+            <button class="btn btn-outline-success btn-block">Add Item</button>
+        </form>
     </div>
 
 
