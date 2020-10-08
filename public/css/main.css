@@ -111,9 +111,6 @@ body {
 .card#accountCard #mainRow {
   min-height: 30vh;
 }
-.card#accountCard #mainRow #content {
-  padding-top: 7em;
-}
 .card#accountCard .card#currentUser {
   float: right;
 }
