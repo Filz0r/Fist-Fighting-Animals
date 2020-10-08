@@ -3,6 +3,7 @@ const User = require('../schemas/userSchema')
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const { checkNotAuthenticated } = require('../controllers/AuthController')
+const  { setEmailToLowerCase } = require('../controllers/utils')
 
 router.get('/', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs')
@@ -20,7 +21,7 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
         try {
             const hashedPw = await bcrypt.hash(password, 10)
             const id = await User.countDocuments()
-            User.findOne({ email: email }).then((user) => {
+            User.findOne({ email: setEmailToLowerCase(email) }).then((user) => {
                 if (user) {
                     req.flash('message', 'That email already exists!')
                     res.redirect('/register')
@@ -28,7 +29,7 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
                     new User({
                         _id: id,
                         username,
-                        email: email.toLowerCase(),
+                        email: setEmailToLowerCase(email),
                         password: hashedPw,
                         admin: false,
                         level: 1,
