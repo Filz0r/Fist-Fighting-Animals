@@ -18,7 +18,7 @@ router.post('/', checkAuthenticated, async (req, res) => {
     if (storyCounter >= 5) {
         points += pointsToAdd
         coins += coinsDrop
-        storyCounter = 0
+        storyCounter = 1
         storyLvl += 1
         await User.findByIdAndUpdate({ _id }, {
             pointsToAdd: points,
