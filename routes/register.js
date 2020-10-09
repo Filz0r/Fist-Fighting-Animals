@@ -35,7 +35,7 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
                         level: 1,
                         attack: 5,
                         defense: 5,
-                        HP: 10,
+                        HP: 100,
                         storyLvl: 1,
                         pointsToAdd: 0,
                         coins: 0,
