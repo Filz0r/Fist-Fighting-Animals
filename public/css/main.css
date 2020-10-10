@@ -119,10 +119,26 @@ body {
   border: none;
 }
 
-.card#homepage {
+.card#newUser {
   height: 60vh;
-  align-items: center;
   padding: 1rem 5rem;
+}
+.card#newUser p {
+  display: none;
+  color: #77b300;
+}
+.card#newUser p#nigth {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.card#newUser button#nextBtn {
+  display: none;
+}
+.card#newUser #choicePicker {
+  display: none;
+}
+.card#newUser .card-footer {
+  border: none;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,7 +1,27 @@
 .card {
-    &#homepage {
+    &#newUser {
         height: 60vh;
-        align-items: center;
+        // align-items: center;
         padding: 1rem 5rem;
+        //justify-content: center;
+        p{
+            display: none;
+            color: $mainColor;
+            &#nigth{
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
+        }
+        button{
+            &#nextBtn {
+                display: none;
+            }
+        }
+        #choicePicker {
+            display: none;
+        }
+        .card-footer{
+            border:none;
+        }
     }
 }
