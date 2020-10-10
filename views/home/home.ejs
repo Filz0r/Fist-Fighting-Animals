@@ -6,18 +6,19 @@
   </button>
 </div>
 <% } %>
-<div class="card border-success" id='homepage'>
 
-  <% if (user.new) { %>
-    <%- include ('new.ejs') %>
-  <% } else { %>
-    <div class="row">
-      <div class="col-md-4">
-        user stats:
-      </div>
-      <div class="col-md-8">
-        <%- include ('returning.ejs') %>
-      </div>
+
+<% if (user.new) { %>
+<%- include ('new.ejs') %>
+<% } else { %>
+<div class="card border-success" id='homepage'>
+  <div class="row">
+    <div class="col-md-4">
+      user stats:
     </div>
+    <div class="col-md-8">
+      <%- include ('returning.ejs') %>
+    </div>
+  </div>
   <% } %>
 </div>
