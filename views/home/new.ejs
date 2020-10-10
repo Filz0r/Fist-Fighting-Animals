@@ -1,7 +1,54 @@
-<h1 id="test">Hello <%= user.username %>!</h1>
-<p id="first">
-    My name is Kabukaka, and first of all, thank you so much for joining us! In the next few minutes I'll be teaching you how to play this game!
-</p>
-<p id="second">
-    First of all lets get the what happened out of the way!
-</p>
+<div class="card border-success" id="newUser">
+    <div class="card-title" id='title'>
+        <h1 class="text-warning">
+            Welcome <%= user.username %>!
+        </h1>
+    </div>
+    <div class="card-body">
+        <p id="first">
+            Hello my name is Kabukaka, and first of all, thank you so much for joining us!
+        </p>
+        <p id="second">
+            In the next few minutes I'll be teaching you how to play this game!
+        </p>
+        <p id="third">
+            First of all lets get the what happened out of the way!
+        </p>
+        <p id="fourth">
+            So... you had it all money, fame, power, everything but...
+        </p>
+        <p id="fifth">
+            ...You lived out of the suffer of our planet...
+        </p>
+        <p id="sixth">
+            ...One day, you were flying over the Amazon Forest...
+        </p>
+        <p id="seventh">
+            ...AND A FREAKING PAIR OF EAGLES WENT INSIDE THE ENGINE ON YOUR SIDE!
+        </p>
+        <p id="eigth">
+            AND ON THE OTHER SIDE TO!!!
+        </p>
+        <p class="text-warning" id="nigth">
+            It went down, and we the people of the Amazon found you!
+        </p>
+        <p id="tenth">
+            That was basically it...<br>
+            ...But we only cured you to throw you back to the <strong>Forest</strong>...<br>
+            ...However I will offer you a choice...<br><br>
+            <strong>A:</strong><i>I can teach you how the Forest works, and help you at least survive a day or two.</i><br><br>
+            <strong>B:</strong><i>You can skip ahead the boring part and just go to the tutorial</i><br><br>
+            <strong>C:</strong><i>You are a smartass and already dealt with this a couple times</i><br><br>
+        </p>
+    </div>
+    <div class="card-footer" id="buttons">
+        <button class="btn btn-outline-success btn-block" id="nextBtn">Learn more!</button>
+
+        <div class="btn-group btn-group-lg btn-block" id="choicePicker">
+            <button type="button" class="btn btn-outline-success" id="choice1"><strong>A</strong></button>
+            <button type="button" class="btn btn-outline-success" id="choice2"><strong>B</strong></button>
+            <button type="button" class="btn btn-outline-danger" id="choice3"><strong>C</strong></button>
+        </div>
+    </div>
+
+</div>
