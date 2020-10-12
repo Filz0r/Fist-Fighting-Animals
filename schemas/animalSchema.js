@@ -21,6 +21,10 @@ const animalSchema = new mongoose.Schema({
     storyLvl: reqNumber,
     pointsToAdd: reqNumber,
     coinsDrop: reqNumber,
+    itemsToDrop: {
+        type: Array,
+        required: false
+    }
 })
 
 module.exports = mongoose.model('animals', animalSchema)
