@@ -39,7 +39,7 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
                         storyLvl: 1,
                         pointsToAdd: 0,
                         coins: 0,
-                        storyCounter: 1,
+                        storyCounter: 0,
                         new: true,
                         bag: [],
                         armor: {attack: 0, defense: 0}
