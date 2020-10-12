@@ -26,6 +26,9 @@ body {
   color: white;
 }
 
+#updateCard {
+  height: 60vh;
+}
 #updateCard .card-header {
   background-color: #282828;
   border: none;
@@ -36,6 +39,15 @@ body {
 #updateCard .form-control:focus {
   border: none !important;
   box-shadow: none !important;
+}
+#updateCard #info {
+  cursor: default;
+  background-color: #282828;
+  color: white;
+}
+#updateCard #info:hover {
+  background-color: #282828;
+  color: white;
 }
 #updateCard #updateStats .fas {
   cursor: pointer;
