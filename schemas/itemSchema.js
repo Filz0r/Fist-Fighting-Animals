@@ -25,6 +25,10 @@ const itemSchema = new mongoose.Schema({
     equipable: {
         type: Boolean,
         required: false
+    },
+    storyLvl: {
+        type: Number,
+        required: false
     }
 })
 
