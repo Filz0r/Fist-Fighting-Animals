@@ -45,7 +45,7 @@ $(document).ready(() => {
     // handles the hp
     $('#hp .fa-plus').click(() => {
         if (points <= 0) return errorHandler(0)
-        if (points % 5 != 0) return errorHandler(2)
+        if (points - 5 < 0) return errorHandler(2)
         hp += 5
         points -= 5
         $('#userHP').attr('value', hp)
