@@ -1,15 +1,24 @@
 #updateCard {
+    height: 60vh;
     .card-header {
         background-color: $bgColor;
         border: none;
     }
-    .form-control{
+    .form-control {
         border: none !important;
         &:focus {
             border: none !important;
-            box-shadow: none  !important;
+            box-shadow: none !important;
         }
-        
+    }
+    #info {
+        cursor: default;
+        background-color: $bgColor;
+        color: white;
+        &:hover {
+            background-color: $bgColor;
+            color: white;
+        }
     }
     #updateStats {
         .fas {
@@ -22,10 +31,10 @@
         input[type="text"] {
             cursor: default;
             color: white;
-            background-color:$bgColor;
+            background-color: $bgColor;
         }
     }
-    
+
     #err0 {
         border-radius: 0px;
         display: none;
@@ -39,4 +48,3 @@
         display: none;
     }
 }
-
