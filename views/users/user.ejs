@@ -1,4 +1,4 @@
-<div class="card border-success" id ="updateCard">
+<div class="card border-success" id="updateCard">
     <div class="card-header">
         <h3 class="text-success">Upgrade your character!</h3>
     </div>
@@ -13,59 +13,177 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col">
+            <div class="col-4">
+                <div class="list-group" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action active" id="upgrades" data-toggle="list"
+                        href="#upgradeTab" role="tab" aria-controls="upgradeTab">Upgrades</a>
+                    <a class="list-group-item list-group-item-action" id="armor" data-toggle="list" href="#armorTab"
+                        role="tab" aria-controls="armorTab">Armor</a>
+                    <a class="list-group-item list-group-item-action" id="consumables" data-toggle="list"
+                        href="#consumablesTab" role="tab" aria-controls="consumablesTab">Consumables</a>
+                    <a href="#" class="list-group-item list-group-item-action readonly" id='info'>
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Information</h5>
+                        </div>
+                        <p class="mb-1">In each of the above tabs you can select what you want do to you character</p>
+                        <ul>
+                            <li>
+                                In <strong>Upgrades</strong> you can upgrade your stats
+                            </li>
+                            <li>
+                                In <strong>Armor</strong> you can select the current armor you want to equip so that you can get permanent stat buffs
+                            </li>
+                            <li>
+                                In <strong>Consumables</strong> you can consume items you get while exploring and recover HP and/or buff your stats
+                            </li>
+                        </ul>
 
+                    </a>
+                </div>
             </div>
-            <div class="col">
-                <form action="/user/<%= user.id %> " method="POST">
-                    <div class="form-row">
-                        <div class="form-group mr-2">
-                            <div class="form-group">
-                                <label for="userLevel">Level</label>
-                                <input type="text" class="form-control" id="userLevel" name="userLevel" readonly
-                                    value="<%= user.level %>" style="text-align: center;">
-                            </div>
-                            <div class="form-group">
-                                <label for="userStory">Story Level</label>
-                                <input type="text" class="form-control" id="userStory" name="userStory"
-                                    value="<%= user.storyLvl %>" readonly style="text-align: center;">
-                            </div>
-                            <div class="form-group">
-                                <label for="userPoints">Points To Add</label>
+            <div class="col-8">
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="upgradeTab" role="tabpanel" aria-labelledby="upgrade">
+                        <form action="/user/<%= user.id %> " method="POST">
+                            <div class="form-row">
+
                                 <input type="text" class="form-control" id="userPoints" name="userPoints"
-                                    value="<%= user.pointsToAdd %>" readonly style="text-align: center;">
-                            </div>
-                        </div>
-                        <div class="form-group ml-2" id="updateStats">
-                            <div class="form-group" id="attack">
-                                <label for="userAttack">Attack</label>
-                                <input type="text" class="form-control" id="userAttack" name="userAttack"
-                                    value="<%= user.attack %>" readonly style="text-align: center;">
-                                <i class="fas fa-plus fa-2x pl-2 pt-1"></i>
-                                <i class="fas fa-minus fa-2x pl-2 pt-1"></i>
-                            </div>
+                                    value="<%= user.pointsToAdd %>" hidden>
 
-                            <div class="form-group" id="defense">
-                                <label for="userDefense">Defense</label>
-                                <input type="text" class="form-control" id="userDefense" name="userDefense"
-                                    value="<%= user.defense %>" readonly style="text-align: center;">
-                                <i class="fas fa-plus fa-2x pl-2 pt-1"></i>
-                                <i class="fas fa-minus fa-2x pl-2 pt-1"></i>
-                            </div>
+                                <div class="form-group ml-2" id="updateStats">
+                                    <div class="form-group" id="attack">
+                                        <label for="userAttack">Attack</label>
+                                        <input type="text" class="form-control" id="userAttack" name="userAttack"
+                                            value="<%= user.attack %>" readonly style="text-align: center;">
+                                        <i class="fas fa-plus fa-2x pl-2 pt-1"></i>
+                                        <i class="fas fa-minus fa-2x pl-2 pt-1"></i>
+                                    </div>
 
-                            <div class="form-group" id="hp">
-                                <label for="userHP">HP</label>
-                                <input type="text" class="form-control" id="userHP" name="userHP"
-                                    value="<%= user.HP %>" readonly style="text-align: center;">
-                                <i class="fas fa-plus fa-2x pl-2 pt-1"></i>
-                                <i class="fas fa-minus fa-2x pl-2 pt-1"></i>
+                                    <div class="form-group" id="defense">
+                                        <label for="userDefense">Defense</label>
+                                        <input type="text" class="form-control" id="userDefense" name="userDefense"
+                                            value="<%= user.defense %>" readonly style="text-align: center;">
+                                        <i class="fas fa-plus fa-2x pl-2 pt-1"></i>
+                                        <i class="fas fa-minus fa-2x pl-2 pt-1"></i>
+                                    </div>
+
+                                    <div class="form-group" id="hp">
+                                        <label for="userHP">HP</label>
+                                        <input type="text" class="form-control" id="userHP" name="userHP"
+                                            value="<%= user.HP %>" readonly style="text-align: center;">
+                                        <i class="fas fa-plus fa-2x pl-2 pt-1"></i>
+                                        <i class="fas fa-minus fa-2x pl-2 pt-1"></i>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <button type="submit" class="btn btn-outline-success btn-block">Save</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-outline-success btn-block">Save</button>
-                </form>
+                    <div class="tab-pane fade" id="armorTab" role="tabpanel" aria-labelledby="armor">
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">name</th>
+                                    <th scope="col">category</th>
+                                    <th scope="col">equiped</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let i = 0; i < bag.length; i++) { %>
+                                    <% if ( bag[i].equipable == true) { %>
+                                        <tr id="<%= i %>">
+                                            <td><%= bag[i].name %></td>
+                                            <td><%= bag[i].category %></td>
+                                            <td><%= bag[i].equiped == true ? 'Yes' : 'No' %></td>
+                                        </tr>
+                                    <% } %> 
+                                <% } %>
+                                </tbody>
+                    
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="consumablesTab" role="tabpanel" aria-labelledby="consumables">
+                        ...
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
 </div>
+<!--
+            <div class="row">
+            <div class="col">
+                <div class="table-responsive tab-pane fade show active" id="userTable" role="tabpanel">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th scope="col">name</th>
+                                <th scope="col">category</th>
+                                <th scope="col">equiped</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i = 0; i < bag.length; i++) { %>
+                                <tr id="<%= i %>">
+                                    <td><%= bag[i].name %></td>
+                                    <td><%= bag[i].category %></td>
+                                    <td><%= bag[i].equiped == true ? 'Yes' : 'No' %></td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                
+                        </table>
+                    </div>
+                </div>
+                <div class="col">
+                    <form action="/user/<%= user.id %> " method="POST">
+                        <div class="form-row">
+                            <div class="form-group mr-2">
+                                <div class="form-group">
+                                    <label for="userLevel">Level</label>
+                                    <input type="text" class="form-control" id="userLevel" name="userLevel" readonly
+                                        value="<%= user.level %>" style="text-align: center;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userStory">Story Level</label>
+                                    <input type="text" class="form-control" id="userStory" name="userStory"
+                                        value="<%= user.storyLvl %>" readonly style="text-align: center;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userPoints">Points To Add</label>
+                                    <input type="text" class="form-control" id="userPoints" name="userPoints"
+                                        value="<%= user.pointsToAdd %>" readonly style="text-align: center;">
+                                </div>
+                            </div>
+                            <div class="form-group ml-2" id="updateStats">
+                                <div class="form-group" id="attack">
+                                    <label for="userAttack">Attack</label>
+                                    <input type="text" class="form-control" id="userAttack" name="userAttack"
+                                        value="<%= user.attack %>" readonly style="text-align: center;">
+                                    <i class="fas fa-plus fa-2x pl-2 pt-1"></i>
+                                    <i class="fas fa-minus fa-2x pl-2 pt-1"></i>
+                                </div>
+    
+                                <div class="form-group" id="defense">
+                                    <label for="userDefense">Defense</label>
+                                    <input type="text" class="form-control" id="userDefense" name="userDefense"
+                                        value="<%= user.defense %>" readonly style="text-align: center;">
+                                    <i class="fas fa-plus fa-2x pl-2 pt-1"></i>
+                                    <i class="fas fa-minus fa-2x pl-2 pt-1"></i>
+                                </div>
+    
+                                <div class="form-group" id="hp">
+                                    <label for="userHP">HP</label>
+                                    <input type="text" class="form-control" id="userHP" name="userHP"
+                                        value="<%= user.HP %>" readonly style="text-align: center;">
+                                    <i class="fas fa-plus fa-2x pl-2 pt-1"></i>
+                                    <i class="fas fa-minus fa-2x pl-2 pt-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success btn-block">Save</button>
+                    </form>
+                </div>
+            </div>
+-->
