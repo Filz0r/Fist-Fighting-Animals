@@ -1,14 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const { checkAuthenticated } = require('../../controllers/AuthController')
-const { bagSorter, itemChecker } = require('../../controllers/itemHandler')
+const { bagSorter } = require('../../controllers/itemHandler')
 const User = require('../../schemas/userSchema')
 
 router.get('/', checkAuthenticated, async (req, res) => {
     const path = req.originalUrl
     const bag = await bagSorter(req.user.id)
-    //const items = await itemChecker(req.user.id)
-    //console.log(items)
+    //console.log(bag)
     res.render('users/user', { user: req.user, bag: bag, path: path })
 })
 router.post('/:id', checkAuthenticated, async (req, res) => {
