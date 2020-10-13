@@ -10,18 +10,15 @@ const User = require('../../schemas/userSchema')
 router.get('/', checkAuthenticated, async (req, res) => {
     const animals = await Animal.find({ storyLvl: req.user.storyLvl })
     const currentAnimal = animals[req.user.storyCounter]
-    //console.log(`CurrentAnimal: ${currentAnimal}`)
+    if (typeof currentAnimal == 'undefined') return res.redirect('/')
     const path = req.originalUrl
     res.render('users/fight', { user: req.user, path: path, animal: currentAnimal })
-    itemGiver(req.user.id)
 })
 router.post('/', checkAuthenticated, async (req, res) => {
     const animals = await Animal.find({ storyLvl: req.user.storyLvl })
-    const { pointsToAdd, coinsDrop } = animals[req.user.storyCounter - 1]
+    const { pointsToAdd, coinsDrop } = animals[req.user.storyCounter]
     let { _id, pointsToAdd: points, coins, storyCounter, storyLvl } = await User.findById({ _id: req.user.id })
-    const storyLvlChanger = storyCounter % 5
-    console.log(`LVL CHANGER:${storyLvlChanger}`)
-    if (storyLvlChanger == 0) {
+    if (storyCounter >= 5 && storyCounter % 5 == 0) {
         points += pointsToAdd
         coins += coinsDrop
         storyCounter += 1
