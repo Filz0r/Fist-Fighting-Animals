@@ -47,6 +47,14 @@ const userSchema = new mongoose.Schema({
     armor: {
         type: Object,
         required: false
+    },
+    consumableCounter : {
+        type: Number,
+        required: false
+    },
+    consumableEffects: { 
+        type: Object,
+        required: false
     }
 
 })
