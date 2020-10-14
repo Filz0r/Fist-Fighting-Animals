@@ -1,8 +1,7 @@
 
 $('#animalBar').width('100%')
 $('#userBar').width('100%')
-function fight(action, attackBuff, defenseBuff) {
-    console.log(action, attackBuff, defenseBuff)
+function fight(action, attackBuff, defenseBuff, consumableAttackBuff, consumableDefenseBuff) {
     const animal = {
         name: $('#animalName').html(),
         level: + $('#animalLevel').html().substring(4).replace(/,/g, ''),
@@ -14,8 +13,8 @@ function fight(action, attackBuff, defenseBuff) {
     const user = {
         name: $('#userName').html(),
         level: + $('#userLevel').html().substring(4).replace(/,/g, ''),
-        attack: + $('#userAttack').html().replace(/,/g, '') + parseInt(attackBuff),
-        defense: + $('#userDefense').html().replace(/,/g, '') + parseInt(defenseBuff),
+        attack: + $('#userAttack').html().replace(/,/g, '') + parseInt(attackBuff) + parseInt(consumableAttackBuff),
+        defense: + $('#userDefense').html().replace(/,/g, '') + parseInt(defenseBuff) + parseInt(consumableDefenseBuff),
         hp: + $('#userHP').html().replace(/,/g, ''),
         fixHP: + $('#userHpFixed').html().substring(1).replace(/,/g, '')
     }
@@ -23,6 +22,7 @@ function fight(action, attackBuff, defenseBuff) {
         const result = (val * 100) / user.fixHP
         return `${result}%`
     }
+    console.log(user)
     if (action == 'attack') {
         animal.hp = Math.round(animal.hp - (user.attack * 0.90 - animal.defense * 0.10))
         user.hp = Math.round(user.hp - (animal.attack * 0.90 - user.defense * 0.10))
