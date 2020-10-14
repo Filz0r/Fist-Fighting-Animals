@@ -140,16 +140,17 @@ async function bagSorter(userId) {
     let i = 0
     do {
        const itemsInBag = {
+            id: bagToSort[i].id,
             name: bagToSort[i].name,
             category: bagToSort[i].category,
             equipable: bagToSort[i].equipable,
             effects: bagToSort[i].effects,
-            equiped: typeof bagToSort[i].equiped == 'undefined' ? null : bagToSort[i].equiped
+            equiped: typeof bagToSort[i].equiped == 'undefined' ? null : bagToSort[i].equiped,
+            quantity: typeof bagToSort[i].quantity == 'undefined' ? null : bagToSort[i].quantity
         }
         sortedBag.push(itemsInBag)
         i++
     } while (i < bagToSort.length)
-    console.log(sortedBag)
     return sortedBag
 }
 
