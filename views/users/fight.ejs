@@ -53,9 +53,9 @@
     </div>
     <div class="card-footer">
         <div class="btn-group btn-group-lg btn-block">
-            <button type="button" class="btn btn-outline-success" onclick="fight('attack', `<%= user.armor.attack %>`, `<%= user.armor.defense %>`)">Punch!</button>
+            <button type="button" class="btn btn-outline-success" onclick="fight('attack', `<%= user.armor.attack %>`, `<%= user.armor.defense %>`, `<%= user.consumableEffects.attack %>`, `<%= user.consumableEffects.defense %>`)">Punch!</button>
 
-            <button type="button" class="btn btn-outline-danger" onclick="fight('defend', `<%= user.armor.attack %>`, `<%= user.armor.defense %>`)">Defend!</button>
+            <button type="button" class="btn btn-outline-danger" onclick="fight('defend', `<%= user.armor.attack %>`, `<%= user.armor.defense %>`, `<%= user.consumableEffects.attack %>`, `<%= user.consumableEffects.defense %>`)">Defend!</button>
         </div>
 
 
