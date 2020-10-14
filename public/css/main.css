@@ -26,9 +26,6 @@ body {
   color: white;
 }
 
-#updateCard {
-  height: 60vh;
-}
 #updateCard .card-header {
   background-color: #282828;
   border: none;
