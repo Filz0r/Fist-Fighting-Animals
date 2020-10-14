@@ -29,6 +29,10 @@ const itemSchema = new mongoose.Schema({
     storyLvl: {
         type: Number,
         required: false
+    },
+    usageCount: {
+        type: Number,
+        required: false
     }
 })
 
