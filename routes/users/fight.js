@@ -4,8 +4,6 @@ const { checkAuthenticated } = require('../../controllers/AuthController')
 const { itemGiver } = require('../../controllers/itemHandler')
 const Animal = require('../../schemas/animalSchema')
 const User = require('../../schemas/userSchema')
-//const Items = require('../../schemas/itemSchema')
-
 
 router.get('/', checkAuthenticated, async (req, res) => {
     const animals = await Animal.find({ storyLvl: req.user.storyLvl })
