@@ -42,7 +42,9 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
                         storyCounter: 0,
                         new: true,
                         bag: [],
-                        armor: {attack: 0, defense: 0}
+                        armor: {attack: 0, defense: 0},
+                        consumableEffects: {attack: 0, defense: 0},
+                        consumableCounter: 0
                     }).save().then( () => {
                         req.flash('message', 'You are now registered!')
                         res.redirect('/login')
