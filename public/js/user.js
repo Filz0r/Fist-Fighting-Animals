@@ -58,5 +58,4 @@ $(document).ready(() => {
         $('#userHP').attr('value', hp)
         $('#userPoints').attr('value', points)
     })
-
 })
