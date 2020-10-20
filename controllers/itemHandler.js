@@ -6,7 +6,7 @@ async function itemGiver(userId) {
     const itemIdCheck = await itemIdChecker(userId)
     let { storyCounter } = await User.findById({ _id: userId })
     const { itemsToDrop } = await Animals.findById({ _id: storyCounter })
-
+    if(itemsToDrop.length < 1 || itemsToDrop === null) return
     //creates the objects that are to be inserted in the database
     const itemsToUpload = async (itemsToDrop) => {
         let i = 0
