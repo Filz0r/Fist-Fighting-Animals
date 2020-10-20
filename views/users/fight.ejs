@@ -38,11 +38,11 @@
                     <img src="<%= animal.img_path%>" class="img-fluid" />
                     <div class="progress">
                         <div class="progress-bar" id="userBar" role="progressbar"
-                            aria-valuenow="<%= animal.HP %>" aria-valuemin="0"
-                            aria-valuemax="<%= animal.HP %>"></div>
+                            aria-valuenow="<%= user.currentHp %>" aria-valuemin="0"
+                            aria-valuemax="<%= user.maxHp %>"></div>
                     </div>
                     <div class="card-text">
-                        HP: <span id="userHP"><%= user.HP %></span><span id="userHpFixed">/<%= user.HP %></span>
+                        HP: <span id="userHP"><%= user.currentHp %></span><span id="userHpFixed">/<%= user.maxHp %></span>
                         Attack: <span id="userAttack"><%= user.attack %></span>
                         Defense: <span id="userDefense"><%= user.defense %></span>
                     </div>
@@ -70,6 +70,7 @@
                 <h5 class="modal-title" id="winModal">Congratulations! You beat <%= animal.name %>! </h5>
             </div>
             <form action="/fight" method="POST">
+                <input hidden type="number"  class="form-control" id="currentHp" name="currentHp" id="formUserHP" value="<%= user.currentHp %>">
                 <div class="modal-body">
                     <p>Your rewards are: </p>
                     <ul>
