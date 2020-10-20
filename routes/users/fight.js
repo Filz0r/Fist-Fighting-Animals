@@ -13,33 +13,44 @@ router.get('/', checkAuthenticated, async (req, res) => {
     res.render('users/fight', { user: req.user, path: path, animal: currentAnimal })
 })
 router.post('/', checkAuthenticated, async (req, res) => {
+    const { currentHp } = req.body
     const animals = await Animal.find({ storyLvl: req.user.storyLvl })
     const { pointsToAdd, coinsDrop } = animals[req.user.storyCounter]
-    let { _id, pointsToAdd: points, coins, storyCounter, storyLvl } = await User.findById({ _id: req.user.id })
-    if (storyCounter >= 5 && storyCounter % 5 == 0) {
-        points += pointsToAdd
-        coins += coinsDrop
-        storyCounter += 1
-        storyLvl += 1
-        itemGiver(req.user.id)
-        await User.findByIdAndUpdate({ _id }, {
-            pointsToAdd: points,
-            coins,
-            storyCounter,
-            storyLvl
-        })
+    let { _id, pointsToAdd: points, coins, storyCounter, storyLvl, currentHp: currHp, maxHp } = await User.findById({ _id: req.user.id })
+    const parsedCurrentHp = parseInt(currentHp)
+    if (parsedCurrentHp > currHp) {
+
+    } else if (parsedCurrentHp > maxHp) {
+
     } else {
-        points += pointsToAdd
-        coins += coinsDrop
-        storyCounter += 1
-        itemGiver(req.user.id)
-        await User.findByIdAndUpdate({ _id }, {
-            pointsToAdd: points,
-            coins,
-            storyCounter
-        })
+        await itemGiver(req.user.id)
+        if ((storyCounter + 1) % 5 == 0) {
+            points += pointsToAdd
+            coins += coinsDrop
+            storyCounter += 1
+            storyLvl += 1
+            await User.findByIdAndUpdate({ _id }, {
+                pointsToAdd: points,
+                coins,
+                storyCounter,
+                storyLvl,
+                currentHp: parsedCurrentHp
+            })
+        } else {
+            points += pointsToAdd
+            coins += coinsDrop
+            storyCounter += 1
+            await User.findByIdAndUpdate({ _id }, {
+                pointsToAdd: points,
+                coins,
+                storyCounter,
+                currentHp: parsedCurrentHp
+            })
+        }
+        res.redirect('/fight')
     }
-    res.redirect('/fight')
+
+
 })
 
 
