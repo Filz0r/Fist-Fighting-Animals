@@ -17,7 +17,7 @@ router.post('/:id', checkAuthenticated, async (req, res) => {
     await User.findByIdAndUpdate({ _id: id }, {
         attack,
         defense,
-        HP,
+        maxHp: HP,
         pointsToAdd
     })
     res.redirect('/user')
@@ -63,7 +63,6 @@ router.get('/use/:id', checkAuthenticated, async (req, res) => {
         res.redirect('/user')
     } else {
         const { equipable, effects, usageCount, name } = await Items.findById({ _id: req.params.id })
-        console.log(usageCount)
         if (!equipable) {
             if (req.user.consumableCounter == 0) {
                 let { consumableCounter, consumableEffects, bag } = await User.findById({_id: req.user.id})
@@ -71,7 +70,7 @@ router.get('/use/:id', checkAuthenticated, async (req, res) => {
                 consumableEffects.attack = effects.attack
                 consumableEffects.defense = effects.defense
                 const indexOfItemToUse = Object.values(bag).findIndex((item) => item.id == req.params.id)
-                bag[indexOfItemToUse].quantity -=1
+                bag[indexOfItemToUse].quantity -= 1
                 await User.findByIdAndUpdate({_id: req.user.id}, {
                     bag,
                     consumableCounter,
