@@ -1,6 +1,12 @@
 
 $('#animalBar').width('100%')
-$('#userBar').width('100%')
+const userhp = $('#userBar').attr('aria-valuenow')
+const userMaxHp = $('#userBar').attr('aria-valuemax')
+$('#userBar').width(hpPercent(userhp, userMaxHp))
+function hpPercent(val, fixHp){
+    const result = (val * 100) / fixHp
+    return `${result}%`
+}
 function fight(action, attackBuff, defenseBuff, consumableAttackBuff, consumableDefenseBuff) {
     const animal = {
         name: $('#animalName').html(),
@@ -18,11 +24,6 @@ function fight(action, attackBuff, defenseBuff, consumableAttackBuff, consumable
         hp: + $('#userHP').html().replace(/,/g, ''),
         fixHP: + $('#userHpFixed').html().substring(1).replace(/,/g, '')
     }
-    function hpPercent(val, user){
-        const result = (val * 100) / user.fixHP
-        return `${result}%`
-    }
-    console.log(user)
     if (action == 'attack') {
         animal.hp = Math.round(animal.hp - (user.attack * 0.90 - animal.defense * 0.10))
         user.hp = Math.round(user.hp - (animal.attack * 0.90 - user.defense * 0.10))
@@ -30,23 +31,27 @@ function fight(action, attackBuff, defenseBuff, consumableAttackBuff, consumable
         if(animal.hp <= 0 && user.hp > 0) {
             $('#animalHP').html('0')
             $('#userHP').html(user.hp)
+            $('input[name=currentHp]').val(`${user.hp}`)
             $('#animalBar').width('0%')
-            $('#userBar').width(hpPercent(user.hp, user))
+            $('#userBar').width(hpPercent(user.hp, user.fixHP))
             $('#winModal').show()
         } else if (animal.hp > 0 && user.hp > 0) {
             $('#animalHP').html(animal.hp)
-            $('#animalBar').width(hpPercent(animal.hp, animal))
-            $('#userBar').width(hpPercent(user.hp, user))
+            $('#animalBar').width(hpPercent(animal.hp, animal.fixHP))
+            $('#userBar').width(hpPercent(user.hp, user.fixHP))
             $('#userHP').html(user.hp)
+            $('input[name=currentHp]').val(`${user.hp}`)
         } else if (animal.hp > 0 && user.hp <= 0) {
             $('#animalHP').html(animal.hp)
             $('#userHP').html('0')
-            $('#animalBar').width('0%')
-            $('#userBar').width(hpPercent(user.hp, user))
+            $('#userBar').width('0%')
+            $('input[name=currentHp]').val(`${user.hp}`)
+            $('#animalBar').width(hpPercent(animal.hp, animal.fixHP))
             $('#lossModal').show()
         } else if ( animal.hp<= 0 && user.hp <= 0) {
             $('#animalHP').html('0')
             $('#userHP').html('0')
+            $('input[name=currentHp]').val(`${user.hp}`)
             $('#animalBar').width('0%')
             $('#userBar').width('0%')
             $('#lossModal').show()
@@ -54,23 +59,22 @@ function fight(action, attackBuff, defenseBuff, consumableAttackBuff, consumable
     } else if (action == 'defend') {
         animal.hp = Math.round(animal.hp - (user.attack * 0.40 - animal.defense * 0.60))
         user.hp = Math.round(user.hp - (animal.attack * 0.40))
-        console.log(user)
         if(animal.hp <= 0 && user.hp > 0) {
             $('#animalHP').html('0')
             $('#userHP').html(user.hp)
             $('#animalBar').width('0%')
-            $('#userBar').width(hpPercent(user.hp, user))
+            $('#userBar').width(hpPercent(user.hp, user.fixHp))
             $('#winModal').show()
         } else if (animal.hp > 0 && user.hp > 0) {
             $('#animalHP').html(animal.hp)
-            $('#animalBar').width(hpPercent(animal.hp, animal))
-            $('#userBar').width(hpPercent(user.hp, user))
+            $('#animalBar').width(hpPercent(animal.hp, animal.fixHP))
+            $('#userBar').width(hpPercent(user.hp, user.fixHP))
             $('#userHP').html(user.hp)
         } else if (animal.hp > 0 && user.hp <= 0) {
             $('#animalHP').html(animal.hp)
             $('#userHP').html('0')
             $('#animalBar').width('0%')
-            $('#userBar').width(hpPercent(user.hp, user))
+            $('#userBar').width(hpPercent(user.hp, user.fixHP))
             $('#lossModal').show()
         } else if ( animal.hp<= 0 && user.hp <= 0) {
             $('#animalHP').html('0')
