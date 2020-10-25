@@ -1,0 +1,17 @@
+version: "3.8"
+
+services: 
+    image: filz26/ffa:latest
+    ports: 
+        - 2500
+    restart: always
+    environment: 
+        VIRTUAL_HOST: ffa.filipedev.xyz
+        LETSENCRYPT_HOST: ffa.filipedev.xyz
+        LETSENCRYOT_EMAIL: filipefig26@gmail.com
+    name: test
+
+networks:
+    default:
+        external: 
+            name: nginx-proxy
