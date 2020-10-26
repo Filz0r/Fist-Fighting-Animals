@@ -1,5 +1,5 @@
 FROM node:12
-WORKDIR /usr/src/Fist-Fighting-Animals
+WORKDIR /home/Documents/DEV/Fist-Fighting-Animals/
 
 COPY package*.json ./
 
