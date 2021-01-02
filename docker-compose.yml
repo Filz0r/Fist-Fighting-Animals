@@ -9,7 +9,7 @@ services:
         environment: 
             VIRTUAL_HOST: ffa.filipedev.xyz
             LETSENCRYPT_HOST: ffa.filipedev.xyz
-            LETSENCRYOT_EMAIL: filipefig26@gmail.com
+            LETSENCRYPT_EMAIL: filipefig26@gmail.com
 
 networks:
     default:
